@@ -1,0 +1,100 @@
+<!--로고-->
+
+<div>
+	<h1 class= "col s12 offset-s2">Daily Quest</h1>
+</div>
+<div class="row center">
+	<h3>퀘스트 생성</h3>
+</div>
+<div class="row ">
+	<p class="center">세가지 퀘스트 중 마음에 드는 한 가지를 결정해 주세요!</p>
+</div>
+
+
+<!--세가지 카테고리-->
+
+<div>
+	<form>
+		<div class="row">
+			<div class="offset-m2 col m2">
+	      <a class="modal-trigger" href="#modal1">
+		      <div class="card yellow lighten-3">
+						<div class="card-content white-text">
+							<span class="card-title mail">카테고리</span>
+						</div>
+					</div>
+				</a>
+			</div>
+		
+			<div class="offset-m1 col m2 offset-m1">
+		      <a class="modal-trigger" href="#modal1">
+		      <div class="card yellow lighten-3">
+						<div class="card-content white-text">
+							<span class="card-title mail">카테고리</span>
+						</div>
+					</div>
+					</a>
+			</div>
+	
+		
+			<div class="offset-m1 col m2 ">
+		      <a class="modal-trigger" href="#modal1">
+		      <div class="card yellow lighten-3">
+						<div class="card-content white-text">
+							<span class="card-title mail">카테고리</span>
+						</div>
+					</div>
+					</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="offset-m3 col m2">
+		      <a class="modal-trigger" href="#modal1">
+		      <div class="card yellow lighten-3">
+						<div class="card-content white-text">
+						<span class="card-title mail">카테고리</span>
+						</div>
+					</div>
+					</a>
+			</div>	
+					<div class="offset-m2 col m2">
+		      <a class="modal-trigger" href="#modal1">
+		      <div class="card yellow lighten-3">
+						<div class="card-content white-text">
+							<span class="card-title">카테고리</span>
+						</div>
+					</div>
+					</a>
+			</div>
+			
+		</div>
+<!--발급받기 버튼-->
+	<div class="row center">
+		<button class="btn waves-effect waves-light grey darken-2" type="submit" name="action">
+			발급받기 <i class="material-icons right">event_available</i>
+		</button>
+	</div>
+</form>
+
+
+
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">확인</a>
+    </div>
+  </div>
+  
+  <script>
+  	$(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    
+   
+    $('.modal').modal();
+  });
+  	
+  </script>

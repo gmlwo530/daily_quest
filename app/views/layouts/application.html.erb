@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <div>
+   <nav>
+    <div class="nav-wrapper grey darken-3">
+      <a href="/index" class="brand-logo"><img src="DQ.logo_3(white).png" style ="height:40px; padding-top:15px; padding-left:15px; " ></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/makeQuest_success">makeQuest_success</a></li>
+        <li><a href="/makeQuest_quest">makeQuest_quest</a></li>
+        <li><a href="/makeQuest_new">makeQuest_new</a></li>
+        <li><a href="/login_design">login</a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+         <li><a href="/makeQuest_success">makeQuest_success</a></li>
+        <li><a href="/makeQuest_quest">makeQuest_quest</a></li>
+        <li><a href="/makeQuest_new">makeQuest_new</a></li>
+        <li><a href="/login_design">login</a></li>
+      </ul>
+    </div>
+  </nav>
+  </div>
+
+<%= yield %>
+
+
+        <footer class="page-footer grey darken-3">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">(주)멋쟁이사자처럼</h5></h5>
+                <p class="grey-text text-lighten-4">이 홈페이지는 멋쟁이사자처럼 해커톤에서 진행된 사이트입니다.</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">개발진</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">안민준</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">김민정</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">기재민</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">최희재</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">신혜지</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">이광빈</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
+</body>
+</html>
