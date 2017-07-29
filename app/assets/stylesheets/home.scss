@@ -4,14 +4,62 @@
 .marginb{
     margin: 10px;
 }
-.portfolio{
-    text-align: center;
-}
-h5{
-    font-size: 40px;
-    font-style: Sans-serif;
-}
+
 .mainpicture{
     height: 300px;
-    
 }
+.quest1{
+      display: table;
+      width: 100%;
+      height: auto;
+      padding: 100px 0;
+      text-align: center;
+      color: white;
+      background: url("question1.png") no-repeat bottom center scroll;
+      background-color: black;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
+      -o-background-size: cover;
+}
+.quest2{
+      display: table;
+      width: 100%;
+      height: auto;
+      padding: 100px 0;
+      text-align: center;
+      color: white;
+      background: url("question2.png") no-repeat bottom center scroll;
+      background-color: black;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
+      -o-background-size: cover;
+}
+#carousel_num1{
+      display: table;
+      width: 100%;
+      height: auto;
+      padding: 100px 0;
+      text-align: center;
+      color: white;
+      background: url("page_image0") no-repeat bottom center scroll;
+      background-color: black;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      background-size: cover;
+      -o-background-size: cover;
+}
+
+// #carousel_num2{
+//     background-image: url("page_image1.JPG");
+//     background-color: #cccccc;
+// }
+// #carousel_num3{
+//     background-image: url("Wpage_image2.JPG");
+//     background-color: #cccccc;
+// }
+// #carousel_num4{
+//     background-image: url("page_image3.JPG");
+//     background-color: #cccccc;
+// }

@@ -18,7 +18,7 @@
 		<div class="row">
 			<div class="offset-m2 col m2">
 	      <a class="modal-trigger" href="#modal1">
-		      <div class="card yellow lighten-3">
+		      <div class="card quest1 yellow lighten-3">
 						<div class="card-content white-text">
 							<span class="card-title mail">카테고리</span>
 						</div>
@@ -27,8 +27,8 @@
 			</div>
 		
 			<div class="offset-m1 col m2 offset-m1">
-		      <a class="modal-trigger" href="#modal1">
-		      <div class="card yellow lighten-3">
+		      <a class="modal-trigger" href="#modal2">
+		      <div class="card quest2 yellow lighten-3">
 						<div class="card-content white-text">
 							<span class="card-title mail">카테고리</span>
 						</div>
@@ -38,8 +38,8 @@
 	
 		
 			<div class="offset-m1 col m2 ">
-		      <a class="modal-trigger" href="#modal1">
-		      <div class="card yellow lighten-3">
+		      <a class="modal-trigger" href="#modal3">
+		      <div class="card quest1 yellow lighten-3">
 						<div class="card-content white-text">
 							<span class="card-title mail">카테고리</span>
 						</div>
@@ -49,8 +49,8 @@
 		</div>
 		<div class="row">
 			<div class="offset-m3 col m2">
-		      <a class="modal-trigger" href="#modal1">
-		      <div class="card yellow lighten-3">
+		      <a class="modal-trigger" href="#modal4">
+		      <div class="card quest2 yellow lighten-3">
 						<div class="card-content white-text">
 						<span class="card-title mail">카테고리</span>
 						</div>
@@ -58,8 +58,8 @@
 					</a>
 			</div>	
 					<div class="offset-m2 col m2">
-		      <a class="modal-trigger" href="#modal1">
-		      <div class="card yellow lighten-3">
+		      <a class="modal-trigger" href="#modal5">
+		      <div class="card quest2 yellow lighten-3">
 						<div class="card-content white-text">
 							<span class="card-title">카테고리</span>
 						</div>
@@ -69,11 +69,11 @@
 			
 		</div>
 <!--발급받기 버튼-->
-	<div class="row center">
-		<button class="btn waves-effect waves-light grey darken-2" type="submit" name="action">
-			발급받기 <i class="material-icons right">event_available</i>
-		</button>
-	</div>
+	<!--<div class="row center">-->
+	<!--	<button class="btn waves-effect waves-light grey darken-2" type="submit" name="action">-->
+	<!--		발급받기 <i class="material-icons right">event_available</i>-->
+	<!--	</button>-->
+	<!--</div>-->
 </form>
 
 
@@ -81,13 +81,74 @@
 
 <div id="modal1" class="modal">
     <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
+      <h4><%= @quest1.name %></h4>
+      <hr>
+      <p><%= @quest1.content %></p>
+      <hr>
+      <p><%= @quest1.description %></p>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">확인</a>
+      <a href = "/home/makeQuest_new/<%= @quest1.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
     </div>
-  </div>
+</div>
+
+<div id="modal2" class="modal">
+    <div class="modal-content">
+      <h4><%= @quest2.name %></h4>
+      <hr>
+      <p><%= @quest2.content %></p>
+      <hr>
+      <p><%= @quest2.description %></p>
+    </div>
+    <div class="modal-footer">
+       <a href = "/home/makeQuest_new/<%= @quest2.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
+</div>
+
+<div id="modal3" class="modal">
+    <div class="modal-content">
+      <h4><%= @quest3.name %></h4>
+      <hr>
+      <p><%= @quest3.content %></p>
+      <hr>
+      <p><%= @quest3.description %></p>
+    </div>
+    <div class="modal-footer">
+      <a href = "/home/makeQuest_new/<%= @quest3.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
+</div>
+
+<div id="modal4" class="modal">
+    <div class="modal-content">
+      <h4><%= @quest4.name %></h4>
+      <hr>
+      <p><%= @quest4.content %></p>
+      <hr>
+      <p><%= @quest4.description %></p>
+    </div>
+    <div class="modal-footer">
+      <a href="/home/makeQuest_new/<%= @quest4.id %>" class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
+</div>
+
+
+<div id="modal5" class="modal">
+    <div class="modal-content">
+      <h4><%= @quest5.name %></h4>
+      <hr>
+      <p><%= @quest5.content %></p>
+      <hr>
+      <p><%= @quest5.description %></p>
+    </div>
+    <div class="modal-footer">
+      <a href="/home/makeQuest_new/<%= @quest5.id %>" class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
+</div>
   
   <script>
   	$(document).ready(function(){

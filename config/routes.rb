@@ -3,8 +3,11 @@ Rails.application.routes.draw do
   
   root 'home#index'
   
+  get '/test' => 'home#test'
   
-  get '/home/makeQuest_new'
+  get '/makeQuest' => 'home#makeQuest_new'
+  
+  get '/home/makeQuest_new/:quest_id' => 'home#selectQuest'
   
   get '/home/index'
   
@@ -34,6 +37,8 @@ Rails.application.routes.draw do
   
   get '/makeQuest_failed' =>'home#makeQuest_failed'
   
+  
+  get '/credit' => "home#credit"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

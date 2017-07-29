@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workspace</title>
+  <title>Daily Quest</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -11,13 +11,20 @@
   <div>
    <nav>
     <div class="nav-wrapper grey darken-3">
-      <a href="/index" class="brand-logo"><img src="DQ.logo_3(white).png" style ="height:40px; padding-top:15px; padding-left:15px; " ></a>
+      <a href="/index" class="brand-logo"><img src="<%= asset_path '/DQ.logo_3(white).png' %>" style ="height:40px; padding-top:15px; padding-left:15px; " ></a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="/makeQuest_success">makeQuest_success</a></li>
         <li><a href="/makeQuest_quest">makeQuest_quest</a></li>
         <li><a href="/makeQuest_new">makeQuest_new</a></li>
-        <li><a href="/login_design">login</a></li>
+        <% if user_signed_in? %>
+        <li><a href="/"><%= current_user.id%> </a></li>
+        <li><a href="/users/sign_out" data-method="delete">logout</a></li>
+        <% else %>
+        <li><a href="/users/sign_in">login</a></li>
+        <% end %>
+          
+        
       </ul>
       <ul class="side-nav" id="mobile-demo">
          <li><a href="/makeQuest_success">makeQuest_success</a></li>
@@ -36,13 +43,14 @@
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">(주)멋쟁이사자처럼</h5></h5>
-                <p class="grey-text text-lighten-4">이 홈페이지는 멋쟁이사자처럼 해커톤에서 진행된 사이트입니다.</p>
+                <h5 class="white-text">팀 "난 4번"</h5></h5>
+                <p class="grey-text text-lighten-4">이 서비스는 ‘멋쟁이사자처럼’ 해커톤의 프로젝트를 위해 제작되었습니다. 이 서비스를 통해 사람들의 지루한 생활에 변화를 가져와 삶의 만족도를 높이고, 보람찬 생활을 하는 것을 목표로 만들었습니다. 홈페이지에서 제공하는 퀘스트를 수행함으로써 생길수 있는 건강한 신체, 넓은 인맥, 깊은 인간관계에 대해 우리 팀은 책임지지 않습니다. </p>
               </div>
               <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">개발진</h5>
                 <ul>
                   <li><a class="grey-text text-lighten-3" href="#!">안민준</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">박희융</a></li>
                   <li><a class="grey-text text-lighten-3" href="#!">김민정</a></li>
                   <li><a class="grey-text text-lighten-3" href="#!">기재민</a></li>
                   <li><a class="grey-text text-lighten-3" href="#!">최희재</a></li>
@@ -54,8 +62,8 @@
           </div>
           <div class="footer-copyright">
             <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            © 2017 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="/credit">More Links</a>
             </div>
           </div>
         </footer>

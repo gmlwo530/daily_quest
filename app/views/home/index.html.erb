@@ -1,46 +1,49 @@
+
+<%= link_to 'signout', destroy_user_session_path, method: :delete%>
+
+
 <!--로고-->
-<div class ="container portfolio">
-  <h5>Daily Quest</h5>
-  <h6>여러분의 지루한 일상을 바꿔드립니다.</h6>
+<div class ="container center">
+  <img src="<%= asset_path '/DQ.logo_sign_in.png'%>" style="padding: 30px;"><br>
+  <h6 style="margin-bottom:3em; font-size: 1em; font-style: italic;">여러분의 지루한 일상을 바꿔드립니다.</h6>
 </div>
 
 <div class="parallax-container">
   <div class="parallax"><img src="main2.jpg"></div>
 </div>
-      
-      
-<!--캐러셀 사용-->
 
-        <!--<div class="mainpicture">
-           <div class="carousel carousel-slider center" data-indicators="true">
-              <div class="carousel-fixed-item center">
-              </div>
-              <div class="carousel-item" href="#one!">
-                <img src="main1.png">
-              </div>
-              <div class="carousel-item" href="#two!">
-                <img src="main2.jpg">
-              </div>
-              <div class="carousel-item" href="#three!">
-                <img src="main3.jpg">
-              </div>
-              <div class="carousel-item" href="#four!">
-               <img src="main4.jpg">
-              </div>
-            </div>
-        
-        </div>-->
+
+<div class="row container center" style= "margin-top:5em;">
+  <div class="col offset-m1 offset- s12 m10 l8">
+    <div class="carousel carousel-slider " style="border-style: ridge;" data-indicators="true">
+      <div class="carousel-item red white-text" id="carousel_num1" href="#one!">
+        <h2>First Panel</h2>
+        <p class="white-text">This is your first panel</p>
+      </div>
+      <div class="carousel-item amber white-text" id="carousel_num2" href="#two!">
+        <h2>Second Panel</h2>
+        <p class="white-text">This is your second panel</p>
+      </div>
+      <div class="carousel-item green white-text" id="carousel_num3" href="#three!">
+        <h2>Third Panel</h2>
+        <p class="white-text">This is your third panel</p>
+      </div>
+      <div class="carousel-item blue white-text" id="carousel_num4" href="#four!">
+        <h2>Fourth Panel</h2>
+        <p class="white-text">This is your fourth panel</p>
+      </div>
     </div>
-    <div class="row center">
-        <h3>데일리 퀘스트</h3>
-    </div>
-    <div class="row center">
-        <h5>당신의 일상에 변화를!</h5>
-    </div>
+  </div>
+  <div class="col l4">
+    <h3>데일리 퀘스트</h3>
+    <p style="font-style: Sans-serif;">당신의 일상에 변화를!</p>
+  </div>
+</div>
+
     
-    <!--퀘스트 발급 버튼-->
-    <div class="center">
-        <a class="waves-effect waves-light btn-large grey darken-1 col s12 offset-5" href="/makeQuest"><i class="material-icons right">send</i>퀘스트 발급받기</a>
-    </div>
+<!--퀘스트 발급 버튼-->
+<div class="center">
+  <a class="waves-effect waves-light btn-large grey darken-1 col s12 offset-5" href="/makeQuest" style ="margin-bottom: 5em; margin-top: 5em;"><i class="material-icons right">send</i>퀘스트 발급받기</a>
+</div>
     
     
