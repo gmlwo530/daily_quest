@@ -1,21 +1,23 @@
 <!--로고-->
-<div>
-	<h1 class= "col s12 offset-s2">Daily Quest</h1>
-</div>
-<div class="row center">
-	<h3>퀘스트 정보</h3>
-</div>
+<div class="container">
+  <div>
+  	<h1 class= "col s12 offset-s2">Daily Quest</h1>
+  </div>
+  
+  <div class="center">
+  	<h3>퀘스트 정보</h3>
+  </div>
 
-<!--타이머-->
-<div>
-  <h1>타이머 애니메이션 적용</h1><br>
-</div>
+  <!--타이머-->
+  <div class="center" >
+    <h1>타이머 애니메이션 적용</h1><br>
+  </div>
 <!--퀘스트 설명창-->
-<div class="row">
-  <div class="col s12 m7">
+  <div class=" row">
     <div class="card grey lighten-3 center">
       <div class="card-content blue-grey-text text-darken-4 center">
         <span class="card-title center grey lighten-1">퀘스트 완료하기</span>
+        <p> <%= @userquest.quest.content %></p>
         <p>카데고리: 지역탐방</p>
         <p>퀘스트 이름: 동국대를 정복하라</p>
         <p>퀘스트 설명: 동국대에 방문하기<br> 
@@ -24,7 +26,6 @@
       </div>
     </div>
   </div>
-</div>
 
 <!--퀘스트 파일 업로드-->
   <form action="#">
@@ -36,5 +37,9 @@
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text" placeholder="파일 업로드">
       </div>
+      <div class="row">
+        <input type="submit" class="waves-effect waves-light btn" value="제출하기">
+      </div>
     </div>
   </form>
+</div>

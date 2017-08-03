@@ -81,11 +81,12 @@
 
 <div id="modal1" class="modal">
     <div class="modal-content">
-      <h4><%= @quest1.name %></h4>
-      <hr>
+      
       <p><%= @quest1.content %></p>
       <hr>
       <p><%= @quest1.description %></p>
+      <hr>
+      <p><%= @quest1.howTo %></p>
     </div>
     <div class="modal-footer">
       <a href = "/home/makeQuest_new/<%= @quest1.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
@@ -95,11 +96,12 @@
 
 <div id="modal2" class="modal">
     <div class="modal-content">
-      <h4><%= @quest2.name %></h4>
-      <hr>
+      
       <p><%= @quest2.content %></p>
       <hr>
       <p><%= @quest2.description %></p>
+      <hr>
+      <p><%= @quest2.howTo %></p>
     </div>
     <div class="modal-footer">
        <a href = "/home/makeQuest_new/<%= @quest2.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
@@ -109,11 +111,12 @@
 
 <div id="modal3" class="modal">
     <div class="modal-content">
-      <h4><%= @quest3.name %></h4>
-      <hr>
+      
       <p><%= @quest3.content %></p>
       <hr>
       <p><%= @quest3.description %></p>
+      <hr>
+      <p><%= @quest3.howTo %></p>
     </div>
     <div class="modal-footer">
       <a href = "/home/makeQuest_new/<%= @quest3.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
@@ -123,11 +126,12 @@
 
 <div id="modal4" class="modal">
     <div class="modal-content">
-      <h4><%= @quest4.name %></h4>
-      <hr>
+      
       <p><%= @quest4.content %></p>
       <hr>
       <p><%= @quest4.description %></p>
+      <hr>
+      <p><%= @quest4.howTo %></p>
     </div>
     <div class="modal-footer">
       <a href="/home/makeQuest_new/<%= @quest4.id %>" class="modal-action waves-effect waves-green btn-flat">확인</a>
@@ -138,11 +142,12 @@
 
 <div id="modal5" class="modal">
     <div class="modal-content">
-      <h4><%= @quest5.name %></h4>
-      <hr>
+      
       <p><%= @quest5.content %></p>
       <hr>
       <p><%= @quest5.description %></p>
+      <hr>
+      <p><%= @quest5.howTo %></p>
     </div>
     <div class="modal-footer">
       <a href="/home/makeQuest_new/<%= @quest5.id %>" class="modal-action waves-effect waves-green btn-flat">확인</a>
@@ -154,7 +159,6 @@
   	$(document).ready(function(){
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     
-   
     $('.modal').modal();
   });
   	

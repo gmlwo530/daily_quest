@@ -1,10 +1,12 @@
 class CreateQuests < ActiveRecord::Migration
   def change
     create_table :quests do |t|
-      t.string :name
-      t.text :content
+      t.string :theme
+      t.string :content
       t.text :description
-      t.string :category
+      t.text :howTo
+      t.string :time
+
 
       t.timestamps null: false
     end

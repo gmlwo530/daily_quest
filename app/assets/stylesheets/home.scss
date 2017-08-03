@@ -36,25 +36,24 @@
       background-size: cover;
       -o-background-size: cover;
 }
+
+
 #carousel_num1{
-      display: table;
-      width: 100%;
-      height: auto;
-      padding: 100px 0;
-      text-align: center;
-      color: white;
-      background: url("page_image0") no-repeat bottom center scroll;
-      background-color: black;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      background-size: cover;
-      -o-background-size: cover;
+
+      background: url("page_image0.JPG") no-repeat  center scroll;
+      background-size: 100% 100%;
+    
 }
 
-// #carousel_num2{
-//     background-image: url("page_image1.JPG");
-//     background-color: #cccccc;
-// }
+
+#carousel_num2{
+  
+    background: url("page_image0.JPG") no-repeat bottom center scroll;
+    background-size: 100% 100%;
+}
+
+
+
 // #carousel_num3{
 //     background-image: url("Wpage_image2.JPG");
 //     background-color: #cccccc;
