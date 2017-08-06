@@ -52,8 +52,23 @@
     background-size: 100% 100%;
 }
 
+@font-face {
+  font-family: 'NotoSans-Bold';    
+  src: url('/assets/NotoSans-Bold.ttf') format('truetype'),
+}
+@font-face {
+  font-family: 'NotoSansUI-Bold';    
+  src: url('/assets/NotoSans-BoldUI.ttf') format('truetype'),
+}
+@font-face {
+  font-family: 'Jeju';    
+  src: url('/assets/JejuMyeongjo.ttf') format('truetype'),
+}
 
 
+*{
+  font-family: 'Jeju';
+}
 // #carousel_num3{
 //     background-image: url("Wpage_image2.JPG");
 //     background-color: #cccccc;

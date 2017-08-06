@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   
   get '/makeQuest' => 'home#makeQuest_new'
   
-  get '/home/makeQuest_new/:quest_id' => 'home#selectQuest'
+  get '/home/makeQuest_new/:quest_id/:user_id' => 'home#selectQuest'
   
   get '/home/index'
   

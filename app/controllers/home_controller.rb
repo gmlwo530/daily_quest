@@ -12,8 +12,9 @@ class HomeController < ApplicationController
   end
   
   def selectQuest   # makeQeust_user창에서 퀘스트를 발급 받으면 사용자와 퀘스트 간에의 관계를 묶어 주는 메소드입
+    @user = current_user
     
-    @userquest = Userquest.create(user_id: params[:quest_id], quest_id: params[:quest_id], status: "selected")
+    @userquest = Userquest.create(user_id: params[:user_id], quest_id: params[:quest_id], status: "selected")
     redirect_to '/makeQuest_quest'
   
   end

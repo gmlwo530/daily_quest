@@ -1,10 +1,6 @@
-
-<%= link_to 'signout', destroy_user_session_path, method: :delete%>
-
-
 <!--로고-->
 <div class ="container center">
-  <img src="<%= asset_path '/DQ.logo_sign_in.png'%>" style="padding: 30px;"><br>
+  <img src="<%= asset_path '/DQ.logo_1.png'%>" style="padding: 30px;"><br>
   <h6 style="margin-bottom:3em; font-size: 1em; font-style: italic;">여러분의 지루한 일상을 바꿔드립니다.</h6>
 </div>
 
@@ -13,27 +9,21 @@
 </div>
 
 
-<div class="row container center" style= "margin-top:5em;">
-  <div class="col offset-m1 offset- s12 m10 l8">
-    <div class="carousel carousel-slider " style="border-style: ridge;" data-indicators="true">
-      <div class="carousel-item black-text" id="carousel_num1" href="#one!">
-      </div>
-      
-      <div class="carousel-item black-text" id="carousel_num2" href="#two!">
-      </div>
-      
-      <div class="carousel-item black-text" id="carousel_num3" href="#three!">
-      </div>
-      
-      <div class="carousel-item black-text" id="carousel_num4" href="#four!">
-      </div>
-      
+<div class="row container center" style= "margin-top:10em; height:500px;">
+  <div class="carousel carousel-slider " style="border-style: ridge;" data-indicators="true" >
+    <div class="carousel-item black-text" id="carousel_num1" href="#one!">
+    </div>
+    
+    <div class="carousel-item black-text red" id="carousel_num2" href="#two!">
+    </div>
+    
+    <div class="carousel-item black-text black" id="carousel_num3" href="#three!">
+    </div>
+    
+    <div class="carousel-item black-text blue" id="carousel_num4" href="#four!">
     </div>
   </div>
-  <div class="col l4">
-    <h3>데일리 퀘스트</h3>
-    <p style="font-style: Sans-serif;">당신의 일상에 변화를!</p>
-  </div>
+
 </div>
 
     
@@ -41,5 +31,3 @@
 <div class="center">
   <a class="waves-effect waves-light btn-large grey darken-1 col s12 offset-5" href="/makeQuest" style ="margin-bottom: 5em; margin-top: 5em;"><i class="material-icons right">send</i>퀘스트 발급받기</a>
 </div>
-    
-    

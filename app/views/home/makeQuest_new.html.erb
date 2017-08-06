@@ -18,7 +18,7 @@
 		<div class="row">
 			<div class="offset-m2 col m2">
 	      <a class="modal-trigger" href="#modal1">
-		      <div class="card quest1 yellow lighten-3">
+		      <div class="card quest1 yellow lighten-3 spin">
 						<div class="card-content white-text">
 							<span class="card-title mail">카테고리</span>
 						</div>
@@ -28,7 +28,7 @@
 		
 			<div class="offset-m1 col m2 offset-m1">
 		      <a class="modal-trigger" href="#modal2">
-		      <div class="card quest2 yellow lighten-3">
+		      <div class="card quest2 yellow lighten-3 spin">
 						<div class="card-content white-text">
 							<span class="card-title mail">카테고리</span>
 						</div>
@@ -39,7 +39,7 @@
 		
 			<div class="offset-m1 col m2 ">
 		      <a class="modal-trigger" href="#modal3">
-		      <div class="card quest1 yellow lighten-3">
+		      <div class="card quest1 yellow lighten-3 spin">
 						<div class="card-content white-text">
 							<span class="card-title mail">카테고리</span>
 						</div>
@@ -50,7 +50,7 @@
 		<div class="row">
 			<div class="offset-m3 col m2">
 		      <a class="modal-trigger" href="#modal4">
-		      <div class="card quest2 yellow lighten-3">
+		      <div class="card quest2 yellow lighten-3 spin">
 						<div class="card-content white-text">
 						<span class="card-title mail">카테고리</span>
 						</div>
@@ -59,7 +59,7 @@
 			</div>	
 					<div class="offset-m2 col m2">
 		      <a class="modal-trigger" href="#modal5">
-		      <div class="card quest2 yellow lighten-3">
+		      <div class="card quest2 yellow lighten-3 spin">
 						<div class="card-content white-text">
 							<span class="card-title">카테고리</span>
 						</div>
@@ -86,10 +86,10 @@
       <hr>
       <p><%= @quest1.description %></p>
       <hr>
-      <p><%= @quest1.howTo %></p>
+      <p><%= @quest1.howTo.gsub("\n", "<br>").html_safe %></p>
     </div>
     <div class="modal-footer">
-      <a href = "/home/makeQuest_new/<%= @quest1.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href = "/home/makeQuest_new/<%= @quest1.id %>/<%= @user.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
     </div>
 </div>
@@ -101,10 +101,10 @@
       <hr>
       <p><%= @quest2.description %></p>
       <hr>
-      <p><%= @quest2.howTo %></p>
+      <p><%= @quest2.howTo.gsub("\n", "<br>").html_safe %></p>
     </div>
     <div class="modal-footer">
-       <a href = "/home/makeQuest_new/<%= @quest2.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
+       <a href = "/home/makeQuest_new/<%= @quest2.id %>/<%= @user.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
     </div>
 </div>
@@ -116,10 +116,10 @@
       <hr>
       <p><%= @quest3.description %></p>
       <hr>
-      <p><%= @quest3.howTo %></p>
+      <p><%= @quest3.howTo.gsub("\n", "<br>").html_safe %></p>
     </div>
     <div class="modal-footer">
-      <a href = "/home/makeQuest_new/<%= @quest3.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href = "/home/makeQuest_new/<%= @quest3.id %>/<%= @user.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
     </div>
 </div>
@@ -131,10 +131,10 @@
       <hr>
       <p><%= @quest4.description %></p>
       <hr>
-      <p><%= @quest4.howTo %></p>
+      <p><%= @quest4.howTo.gsub("\n", "<br>").html_safe %></p>
     </div>
     <div class="modal-footer">
-      <a href="/home/makeQuest_new/<%= @quest4.id %>" class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="/home/makeQuest_new/<%= @quest4.id %>/<%= @user.id %>" class="modal-action waves-effect waves-green btn-flat">확인</a>
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
     </div>
 </div>
@@ -147,10 +147,10 @@
       <hr>
       <p><%= @quest5.description %></p>
       <hr>
-      <p><%= @quest5.howTo %></p>
+      <p><%= @quest5.howTo.gsub("\n", "<br>").html_safe %></p>
     </div>
     <div class="modal-footer">
-      <a href="/home/makeQuest_new/<%= @quest5.id %>" class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="/home/makeQuest_new/<%= @quest5.id %>/<%= @user.id %>" class="modal-action waves-effect waves-green btn-flat">확인</a>
       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
     </div>
 </div>
@@ -160,6 +160,13 @@
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     
     $('.modal').modal();
+    $('.spin').click(function(){
+			      
+			      $(this).transition({perspective: '10px',
+              rotateY: '720deg'});
+            $(this).text("완료");
+            
+			    })
   });
   	
   </script>
