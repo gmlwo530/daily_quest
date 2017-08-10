@@ -1,10 +1,10 @@
 class HomeController < ApplicationController
-
+  # before_action :authenticate_user!, :except => [:index]
   def makeQuest_new
     @user = current_user
-    if @user.status == 1
-      redirect_to '/makeQuest_quest'
-    end
+  #  if @user.status == 1
+  #     redirect_to '/makeQuest_quest'
+  #  end
    
     
     @quest1 = Quest.where(theme: '정').sample
@@ -25,6 +25,7 @@ class HomeController < ApplicationController
   end
 
   def makeQuest_quest
+    
     
     @user = current_user
     @userquest = Userquest.find_by(user_id: @user.id)

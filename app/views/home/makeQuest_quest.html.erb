@@ -13,18 +13,19 @@
   <div class="center">
     <h5>타이머</h5><br>
     <h2><p id="demo"></p></h2>
-
     <script>
     // Set the date we're counting down to
+     
+      var countDownDate = ((<%= @userquest.created_at.hour %> + 1) * 3600000) + (<%= @userquest.created_at.min %> * 60 * 1000 )
+      + (<%= @userquest.created_at.sec %> * 1000) + (<%= @userquest.quest.time %> * 3600000);
+      var timeset = new Date();
    
-    var countDownDate = new Date($.now()).getTime()+(<%= @userquest.quest.time %>*3600000);
-
-    // Update the count down every 1 second
-    var x = setInterval(function() {
+      // Update the count down every 1 second
+      var x = setInterval(function() {
 
       // Get todays date and time
       var now = new Date().getTime();
-      
+     
       // Find the distance between now an the count down date
       var distance = countDownDate - now;
       
@@ -34,12 +35,17 @@
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
       
+      timeset.setHours(hours, minutes, seconds);
+      var hour = timeset.getHours();
+      var minute = timeset.getMinutes();
+      var second = timeset.getSeconds();
+      
       // Output the result in an element with id="demo"
-      document.getElementById("demo").innerHTML = hours + "시간 "
-      + minutes + "분 " + seconds + "초 ";
+      document.getElementById("demo").innerHTML = hour + "시간 "
+      + minute + "분 " + second + "초 ";
       
       // If the count down is over, write some text 
-      if (distance < 0) {
+      if (distance > 0) {
           clearInterval(x);
           document.getElementById("demo").innerHTML = "FAIL";
         }

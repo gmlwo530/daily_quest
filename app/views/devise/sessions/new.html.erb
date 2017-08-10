@@ -1,4 +1,5 @@
 <!--로고-->
+
 <div class="row center">
   <img src="<%= asset_path '/DQ.logo_sign_in.png'%>" style="padding: 30px;">
 </div>
@@ -36,7 +37,12 @@
           <a href="/users/sign_up" style="color:#ffffff">SIGN UP</a>
       </div>
     </div>
-    
+    <div class="actions row center">
+      <%- if devise_mapping.omniauthable? %>
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+        <% end -%>
+      <% end -%>
+    </div>
   <% end %>
 </div>
-
