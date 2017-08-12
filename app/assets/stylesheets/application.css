@@ -14,3 +14,8 @@
  *= require_tree .
  *= require_self
  */
+
+@font-face {
+  font-family: 'AlexBrush';    
+  src: url('/assets/AlexBrush-Regular.ttf') format('truetype'),
+}

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'carrierwave', '~> 1.0'
-
+gem 'kaminari'
 gem 'jquery-turbolinks'
 gem 'rails_db'
 gem 'materialize-sass'

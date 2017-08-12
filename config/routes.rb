@@ -15,12 +15,17 @@ Rails.application.routes.draw do
   
   get '/home/signup'
   
-  get '/home/makeQuest_quest'
+  get '/home/makeQuest_quest' => 'home#completeQuest'
   
   get '/home/makeQuest_success'
   
+  get '/home/makeQuest_quest/:quest_id/:user_id' => 'home#completeQuest'
+  
   get '/home/makeQuest_failed'
   
+  get '/home/my_page'
+  
+  get '/home/my_bbs'
   
   
   get '/index'=>'home#index'
@@ -37,8 +42,12 @@ Rails.application.routes.draw do
   
   get '/makeQuest_failed' =>'home#makeQuest_failed'
   
+  get '/my_page'=>'home#my_page'
   
   get '/credit' => "home#credit"
+  
+  get '/home/test'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -3,7 +3,7 @@ class CreateUserquests < ActiveRecord::Migration
     create_table :userquests do |t|
       t.references :user, index: true, foreign_key: true
       t.references :quest, index: true, foreign_key: true
-
+      t.string :success
       t.timestamps null: false
     end
   end

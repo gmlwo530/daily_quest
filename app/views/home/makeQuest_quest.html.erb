@@ -11,8 +11,11 @@
 
   <!--타이머-->
   <div class="center">
-    <h5>타이머</h5><br>
+    
+    <div class="timer">
+    <h5>남은 시간</h5><br>
     <h2><p id="demo"></p></h2>
+    </div>
     <script>
     // Set the date we're counting down to
      
@@ -32,8 +35,8 @@
       // Time calculations for days, hours, minutes and seconds
       //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
       var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)) + 1;
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000) + 8;
       
       timeset.setHours(hours, minutes, seconds);
       var hour = timeset.getHours();
@@ -67,7 +70,7 @@
   </div>
 
 <!--퀘스트 파일 업로드-->
-  <form action="#">
+  <form action="/home/makeQuest_quest/<%= @userquest.id %>/<%= @user.id %>" method="GET">
     <div class="file-field input-field center">
       <div class="btn">
         <span>찾아보기</span>
@@ -76,12 +79,10 @@
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text" placeholder="파일 업로드">
       </div>
-      <div class="row" id="target">
-        <input type="submit" class="waves-effect waves-light btn" value="제출하기">
-      </div>
-      
-      
-      
+    </div>
+    <div class="row center" id="target">
+        <a href="/home/makeQuest_quest/<%= @userquest.id %>/<%= @user.id %>" id="success"><input type="submit" class="waves-effect waves-light btn" value="제출하기"></a>
+        <a href="/home/makeQuest_quest"><input type="submit" class="waves-effect waves-light btn red lighten-1" value="포기하기"></a>
     </div>
   </form>
 </div>

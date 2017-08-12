@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20170810084505) do
   create_table "userquests", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "quest_id"
+    t.boolean  "success"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

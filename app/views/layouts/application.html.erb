@@ -7,21 +7,21 @@
   <%= csrf_meta_tags %>
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
+<body class="container">
   <div>
    <nav>
     <div class="nav-wrapper grey darken-3">
       <a href="/" class="brand-logo"><img src="<%= asset_path '/DQ.logo_3(white).png' %>" style ="height:40px; padding-top:15px; padding-left:15px; " ></a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/makeQuest_success">makeQuest_success</a></li>
-        <li><a href="/makeQuest_quest">makeQuest_quest</a></li>
-        <li><a href="/makeQuest_new">makeQuest_new</a></li>
+        <li><a href="/makeQuest_success">SUCCESS</a></li>
+        <li><a href="/makeQuest_quest">MY QUEST</a></li>
+        <li><a href="/makeQuest_new">MAKE QUEST</a></li>
         <% if user_signed_in? %>
-        <li><a href="/"><%= current_user.nickname%> </a></li>
-        <li><a href="/users/sign_out" data-method="delete">logout</a></li>
+        <li><a href="/my_page"><%= current_user.nickname%> </a></li>
+        <li><a href="/users/sign_out" data-method="delete">lOGOUT</a></li>
         <% else %>
-        <li><a href="/users/sign_in">login</a></li>
+        <li><a href="/users/sign_in">lOGIN</a></li>
         <% end %>
           
         
@@ -38,7 +38,7 @@
 
 <%= yield %>
 
-
+<!--
         <footer class="page-footer grey darken-3">
           <div class="container">
             <div class="row">
@@ -66,6 +66,6 @@
             <a class="grey-text text-lighten-4 right" href="/credit">More Links</a>
             </div>
           </div>
-        </footer>
+        </footer>-->
 </body>
 </html>
