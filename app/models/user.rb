@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          
   has_many :userquests
   has_many :quests, through: :userquests
+  has_many :posts
   
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
@@ -43,6 +44,9 @@ class User < ActiveRecord::Base
               nickname: auth.info.name,
               password: Devise.friendly_token[0,20]
             )
+            if user.email.nil?
+              user.email = "#{auth.info.image}@facebook.com"
+            end
           end
           user.save!
         end

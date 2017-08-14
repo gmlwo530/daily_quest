@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+<div class="center">
+<h1>퀘스트 안녕하십니까?</h1>
+</div>
+  
+<div class="container">
+  <div class="white z-depth-3">
+    <div class="input-field suffix offset-m8 offset-s6 offset-m8 col s6 m4 l4 right">
+      <div class="row">
+        <%= form_tag search_posts_path, :method => :get do %>
+        <%= text_field_tag :query, params[:query] %>
+        <%= submit_tag "검색"%>
+        <a href="/posts/search" name="commit"><i class="material-icons teal-text">search</i></a>
+        <% end %>
+      </div>
+  </div>  
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>Theme</th>
+          <th>Title</th>
+          <th>User</th>
+          <!--<th colspan="3"></th>-->
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.theme %></td>
+            <td><%= link_to "#{post.title}", post %></td>
+            <td><%= post.user.nickname %></td>
+            <td><%= link_to '수정하기', edit_post_path(post) %></td>
+            <td><a href="/posts/<%= post.id %>" data-confirm="Are you sure?" data-method="delete" rel="nofollow" ><i class="material-icons" style="color: #fa8072">cancel</i></a></td>   <!-- 수정중-->
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <br>
+  
+  <%= link_to '새글 쓰기', new_post_path %>
+</div>
+

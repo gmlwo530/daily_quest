@@ -1,15 +1,278 @@
-<!--로고-->
-<div class ="container center">
-  <img src="<%= asset_path '/DQ.logo_1.png'%>" style="padding: 30px;"><br>
-  <h6 style="margin-bottom:3em; font-size: 1em; font-style: italic;">여러분의 지루한 일상을 바꿔드립니다.</h6>
+<!--프로필 사이드바-->
+<div id="test" class="row">
+  <div class="col s3 m3 l3">
+    <% if current_user == nil%>
+      <%show_user = "로그인을 해주세요"%>
+      <%show_rate = nil%>
+      <%show_success = nil%>
+      <%show_fail = nil%>
+      <%show_category = nil%> 
+      <%show_point =nil%>
+    <% else %>
+      <%show_user = current_user.nickname%>
+      <%show_rate =  ((@userquest_profile_success_size+@userquest_profile_fail_size/@quest_size)*100).to_s + "%" %>
+      <%show_success =   @userquest_profile_success_size%>
+      <%show_fail =  @userquest_profile_fail_size %>
+      <%show_category = "모험"%>
+      <%show_point = "3700"%>
+    
+    <% end %>
+  <div class="z-depth-4 hotpink-5" style="margin-top: 50px; margin-left:20px; margin-right:20px; padding-bottom:600px;">
+    <ul class="collection with-header center">
+      <li class="collection-item" style="background-color:#690505;"><a href="/my_page" style="color:#ffffff; letter-spacing:3px;"><%=show_user%><i class="material-icons">settings</i></a></li>
+      <li class="collection-header"><img src="<%= current_user.profile_img %>" style="border: #c5c5c5 solid; margin:8px;" width= 100%; height=100%;></li>
+      <li class="collection-item" style="letter-spacing:1.5px fontsize:5px;"><%=show_point%> Point<i class="material-icons" style="color:#ffd700; margin-left:5px;">copyright</i></li>
+      <li class="collection-item" style="letter-spacing:1.5px">퀘스트 성공률 : <%=show_rate%></li>
+      <li class="collection-item" style="letter-spacing:1.5px">성공한 퀘스트 수 : <%=show_success%></li>
+      <li class="collection-item" style="letter-spacing:1.5px">실패한 퀘스트 수 : <%=show_fail%></li>
+      <li class="collection-item" style="letter-spacing:1.5px">주 카데고리 : <%=show_category%></li>
+    </ul>
+  </div>
 </div>
 
-<div class="parallax-container">
-  <div class="parallax"><img src="main2.jpg"></div>
+    <div class="col s8 m8 l8 hotpink-5 z-depth-3" style="margin:50px; border: #690505 solid;">
+<!--카테고리-->
+
+  <% if !current_user.status %>
+  <div class="center"><img style="margin: 20px;" src="<%= asset_path ("text_fin.png") %>"></div>
+    	<div class="carousel" >
+          <a class="carousel-item modal-trigger quest3 N/A transparent" href="#modal3">
+    			</a>
+          
+          <a class="carousel-item modal-trigger quest1 N/A transparent" href="#modal1">
+         </a>
+    	
+          <a class="carousel-item modal-trigger quest2 N/A transparent" href="#modal2">
+    			</a>
+    			
+          <a class="carousel-item modal-trigger quest4 N/A transparent" href="#modal4">
+    			</a>
+    			
+          <a class="carousel-item modal-trigger quest5 N/A transparent" href="#modal5">
+    			</a>
+    		</div>
+  		</div>
+  <% else %>
+    <div class="timer">
+    <h5>남은 시간</h5><br>
+    <h2><p id="demo"></p></h2>
+    </div>
+    <script>
+    // Set the date we're counting down to
+     
+      var countDownDate = ((<%= @userquest.created_at.hour %> + 1) * 3600000) + (<%= @userquest.created_at.min %> * 60 * 1000 )
+      + (<%= @userquest.created_at.sec %> * 1000) + (<%= @userquest.quest.time %> * 3600000);
+      var timeset = new Date();
+   
+      // Update the count down every 1 second
+      var x = setInterval(function() {
+
+      // Get todays date and time
+      var now = new Date().getTime();
+     
+      // Find the distance between now an the count down date
+      var distance = countDownDate - now;
+      
+      // Time calculations for days, hours, minutes and seconds
+      //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)) + 1;
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000) + 8;
+      
+      timeset.setHours(hours, minutes, seconds);
+      var hour = timeset.getHours();
+      var minute = timeset.getMinutes();
+      var second = timeset.getSeconds();
+      
+      // Output the result in an element with id="demo"
+      document.getElementById("demo").innerHTML = hour + "시간 "
+      + minute + "분 " + second + "초 ";
+      
+      // If the count down is over, write some text 
+      if (distance > 0) {
+          clearInterval(x);
+          document.getElementById("demo").innerHTML = "FAIL";
+        }
+      }, 1000);
+    </script>
+  <% end %>
+      
+  </div>
+<div id="modal3" class="modal">
+    <div class="modal-content">
+      
+      <p><%= @quest3.content %></p>
+      <hr>
+      <p><%= @quest3.description %></p>
+      <hr>
+      <p><%= @quest3.howTo.gsub("\n", "<br>").html_safe %></p>
+    </div>
+    <div class="modal-footer">
+      <a href = "/home/makeQuest_new/<%= @quest3.id %>/<%= @user.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
+</div>
+
+<div id="modal4" class="modal">
+    <div class="modal-content">
+      
+      <p><%= @quest4.content %></p>
+      <hr>
+      <p><%= @quest4.description %></p>
+      <hr>
+      <p><%= @quest4.howTo.gsub("\n", "<br>").html_safe %></p>
+    </div>
+    <div class="modal-footer">
+      <a href="/home/makeQuest_new/<%= @quest4.id %>/<%= @user.id %>" class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
 </div>
 
 
-<div class="row container center" style= "margin-top:10em; height:500px;">
+<div id="modal5" class="modal">
+    <div class="modal-content">
+      
+      <p><%= @quest5.content %></p>
+      <hr>
+      <p><%= @quest5.description %></p>
+      <hr>
+      <p><%= @quest5.howTo.gsub("\n", "<br>").html_safe %></p>
+    </div>
+    <div class="modal-footer">
+      <a href="/home/makeQuest_new/<%= @quest5.id %>/<%= @user.id %>" class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
+    </div>
+
+
+  <script>
+  	$(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.carousel').carousel();
+    $('.modal').modal();
+    $('.spin').click(function(){
+			      
+			      $(this).transition({perspective: '10px',
+              rotateY: '720deg'});
+			    })
+  });
+  	
+  </script>
+    
+  </div>
+</div>
+
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery countdown-timer.js Demo Page</title>
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="countdown-timer.js"></script>
+    <style>
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+  font-family: 'Quicksand', sans-serif;
+}
+
+.countdown-timer-wrapper {
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
+  max-width: 300px;
+  margin: 50px auto;
+}
+
+.countdown-timer-wrapper h5 {
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding-top: 10px;
+  text-shadow: none;
+}
+
+.countdown-timer-wrapper .timer {
+  padding: 10px;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.countdown-timer-wrapper .timer .timer-wrapper {
+  display: inline-block;
+  width: 60px;
+  height: 50px;
+}
+
+.countdown-timer-wrapper .timer .timer-wrapper .time {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.countdown-timer-wrapper .timer .timer-wrapper .text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+h1 { margin:150px auto; text-align:center;}
+</style>
+    </head>
+
+    <body>
+    <div id="jquery-script-menu">
+<div class="jquery-script-center">
+<ul>
+<li><a href="http://www.jqueryscript.net/time-clock/Digital-Countdown-Clock-jQuery">Download This Plugin</a></li>
+<li><a href="http://www.jqueryscript.net/">Back To jQueryScript.Net</a></li>
+</ul>
+<div class="jquery-script-ads"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-2783044520727903";
+/* jQuery_demo */
+google_ad_slot = "2780937993";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div class="jquery-script-clear"></div>
+</div>
+</div>
+    <h1>jQuery countdown-timer.js Demo Page</h1>
+<div class="countdown-timer-wrapper">
+      <div class="timer" id="countdown"></div>
+    </div>
+<script>
+        $(document).ready(function () {
+
+            var myDate = new Date();
+myDate.setDate(myDate.getDate() + 2);
+            $("#countdown").countdown(myDate, function (event) {
+                $(this).html(
+                    event.strftime(
+                        '<div class="timer-wrapper"><div class="time">%D</div><span class="text">days</span></div><div class="timer-wrapper"><div class="time">%H</div><span class="text">hrs</span></div><div class="timer-wrapper"><div class="time">%M</div><span class="text">mins</span></div><div class="timer-wrapper"><div class="time">%S</div><span class="text">sec</span></div>'
+                    )
+                );
+            });
+
+        });
+    </script>
+</body>
+</html>
+
+
+
+<div class="container row center" style= "margin-top:10em; height:500px;">
   <div class="carousel carousel-slider " style="border-style: ridge;" data-indicators="true" >
     <div class="carousel-item black-text" id="carousel_num1" href="#one!">
     </div>
@@ -25,9 +288,19 @@
   </div>
 
 </div>
-
+<%= @user.status %>
     
 <!--퀘스트 발급 버튼-->
 <div class="center">
   <a class="waves-effect waves-light btn-large grey darken-1 col s12 offset-5" href="/makeQuest" style ="margin-bottom: 5em; margin-top: 5em;"><i class="material-icons right">send</i>퀘스트 발급받기</a>
 </div>
+<script>
+  function autoplay() {
+    $('.carousel').carousel('next');
+    setTimeout(autoplay, 5000);
+}
+
+
+
+</script>
+

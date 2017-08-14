@@ -9,3 +9,14 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
+Rails.application.config.assets.precompile += %w( normalize.css )
+Rails.application.config.assets.precompile += %w( demo.css )
+Rails.application.config.assets.precompile += %w( component.css )
+
+Rails.application.config.assets.precompile += %w( modernizr.custom.js )
+Rails.application.config.assets.precompile += %w( masonry.pkgd.min )
+Rails.application.config.assets.precompile += %w( colorfinder-1.1.js )
+Rails.application.config.assets.precompile += %w( imagesloaded.pkgd.min.js )
+Rails.application.config.assets.precompile += %w( gridScrollFx.js )
+Rails.application.config.assets.precompile += %w( classie.js )
+Rails.application.config.assets.precompile += %w( countdown-timer.js )

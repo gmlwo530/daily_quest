@@ -28,7 +28,7 @@
       padding: 100px 0;
       text-align: center;
       color: white;
-      background: url("card_Friendship_background.png") no-repeat bottom center scroll;
+      background: url("card_정.png") no-repeat bottom center scroll;
       background-color: black;
       background-size: 100% 100%;
 }
@@ -39,7 +39,7 @@
       padding: 100px 0;
       text-align: center;
       color: white;
-      background: url("card_adventure_background.png") no-repeat bottom center scroll;
+      background: url("card_모험.png") no-repeat bottom center scroll;
       background-color: black;
       background-size: 100% 100%;
 }
@@ -50,7 +50,7 @@
       padding: 100px 0;
       text-align: center;
       color: white;
-      background: url("card_Improvement_background.png") no-repeat bottom center scroll;
+      background: url("card_자기계발.png") no-repeat bottom center scroll;
       background-color: black;
       background-size: 100% 100%;
 }
@@ -61,7 +61,7 @@
       padding: 100px 0;
       text-align: center;
       color: white;
-      background: url("card_tutorial_background.png") no-repeat bottom center scroll;
+      background: url("card_튜토리얼.png") no-repeat bottom center scroll;
       background-color: black;
       background-size: 100% 100%;
 }
@@ -72,10 +72,16 @@
       padding: 100px 0;
       text-align: center;
       color: white;
-      background: url("card_hackathon_background.png") no-repeat bottom center scroll;
+      background: url("card_해커톤.png") no-repeat bottom center scroll;
       background-color: black;
       background-size: 100% 100%;
 }
+
+.coin{
+  background: url("money_fin.png") no-repeat bottom center scroll;
+  background-size: 100% 100%;
+}
+
 @media only screen and (min-width:600px) {
  .carousel .carousel-item{
     width:300px;
@@ -180,4 +186,23 @@
 //     background-image: url("page_image3.JPG");
 //     background-color: #cccccc;
 // }
+
+.hotpink-1{
+  background-color:#690505;
+}
+
+.hotpink-2{
+  background-color:#fa8072;
+}
+.hotpink-3{
+  background-color:#ffd3b6;
+}
+.hotpink-4{
+  background-color:#fff5ee;
+}
+.hotpink-5{
+  background-color:#ffffff;
+}
+
+
 
