@@ -69,6 +69,9 @@
     </div>
   </div>
 
+<!--퀘스트 완료 방법을 측정합니다-->
+<!--사진으로 완료하는 퀘스트-->
+<% if @questCondition == "Photo" %>
 <!--퀘스트 파일 업로드-->
   <form action="/home/makeQuest_quest/<%= @userquest.id %>/<%= @user.id %>" method="GET">
     <div class="file-field input-field center">
@@ -85,4 +88,13 @@
         <a href="/home/makeQuest_quest"><input type="submit" class="waves-effect waves-light btn red lighten-1" value="포기하기"></a>
     </div>
   </form>
+<!--단어 나열로 완료하는 퀘스트-->
+<% elsif @quest.condition == "Array" %>
+  <%= render 'formArray' %>
+  
+<!--글쓰기로 완료하거나, 확인할 수 없는 경우(오류)  -->
+<% else %>
+  <%= render 'formWrite' %>
+  <!--_formWrite.html.erb 를 표시합니다-->
+<% end %>
 </div>

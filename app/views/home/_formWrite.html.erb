@@ -1,0 +1,48 @@
+<div class="container">
+
+
+  <form class="col s12" action="/home/makeQuest_quest/<%= @userquest.id %>/<%= @user.id %>" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <div class="row">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="content" class="materialize-textarea" name="writedata"></textarea>
+          <label for="content"><%=@quest.explain %></label>
+        </div>
+      </div>
+    </div>
+    <!--미션 내용 입력 창-->
+    <span id="counter">###</span>
+    <!-- 글자수 카운터 위치 -->
+    <button class="btn waves-effect waves-light disabled" id ="completebutton" type="submit" name="action">완료하기
+      <i class="material-icons right">send</i>
+    </button>
+  </form>
+
+
+
+</div>
+
+
+<script>
+  $(function() {
+      $('#content').keyup(function (e){
+          var content = $(this).val();
+          // 글자수를 측정해서 보내줌
+          $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
+          $('#counter').html('현재 ' + content.length + ' 글자 입니다');
+          // 글자수에 따라 활성화 정보를 받음
+          var clenth = content.length;
+          if(clenth > <%= @quest.needs.to_i - 1 %>){
+              $('#completebutton').removeClass("disabled");
+          }
+          else {
+            $('#completebutton').addClass("disabled");
+          }
+
+      });
+      $('#content').keyup();
+  });
+
+
+</script>

@@ -1,4 +1,46 @@
 <!--프로필 사이드바-->
+<style>
+  .countdown-timer-wrapper {
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
+  max-width: 300px;
+  margin: 50px auto;
+}
+
+.countdown-timer-wrapper h5 {
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding-top: 10px;
+  text-shadow: none;
+}
+
+.countdown-timer-wrapper .timer {
+  padding: 10px;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.countdown-timer-wrapper .timer .timer-wrapper {
+  display: inline-block;
+  width: 60px;
+  height: 50px;
+}
+
+.countdown-timer-wrapper .timer .timer-wrapper .time {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.countdown-timer-wrapper .timer .timer-wrapper .text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+</style>
+
+
 <div id="test" class="row">
   <div class="col s3 m3 l3">
     <% if current_user == nil%>
@@ -13,13 +55,13 @@
       <%show_rate =  ((@userquest_profile_success_size+@userquest_profile_fail_size/@quest_size)*100).to_s + "%" %>
       <%show_success =   @userquest_profile_success_size%>
       <%show_fail =  @userquest_profile_fail_size %>
-      <%show_category = "모험"%>
+      <%show_category = @theme%>
       <%show_point = "3700"%>
     
     <% end %>
   <div class="z-depth-4 hotpink-5" style="margin-top: 50px; margin-left:20px; margin-right:20px; padding-bottom:600px;">
     <ul class="collection with-header center">
-      <li class="collection-item" style="background-color:#690505;"><a href="/my_page" style="color:#ffffff; letter-spacing:3px;"><%=show_user%><i class="material-icons">settings</i></a></li>
+      <li class="collection-item" style="background-color:#690505;"><a href="/my_page?theme=전체" style="color:#ffffff; letter-spacing:3px;"><%=show_user%><i class="material-icons">settings</i></a></li>
       <li class="collection-header"><img src="<%= current_user.profile_img %>" style="border: #c5c5c5 solid; margin:8px;" width= 100%; height=100%;></li>
       <li class="collection-item" style="letter-spacing:1.5px fontsize:5px;"><%=show_point%> Point<i class="material-icons" style="color:#ffd700; margin-left:5px;">copyright</i></li>
       <li class="collection-item" style="letter-spacing:1.5px">퀘스트 성공률 : <%=show_rate%></li>
@@ -53,9 +95,22 @@
     		</div>
   		</div>
   <% else %>
-    <div class="timer">
-    <h5>남은 시간</h5><br>
-    <h2><p id="demo"></p></h2>
+    <div class="countdown-timer-wrapper">
+          <div class="timer" id="countdown">
+            <div class="timer-wrapper"></div>
+            <div class="timer-wrapper">
+              <div id="hour" class="time">%H</div>
+              <span class="text">hrs</span>
+            </div>
+            <div class="timer-wrapper">
+              <div id="minute"class="time">%M</div>
+              <span class="text">mins</span>
+            </div>
+            <div class="timer-wrapper">
+              <div id="second"class="time">%S</div>
+              <span class="text">sec</span>
+            </div>
+          </div>
     </div>
     <script>
     // Set the date we're counting down to
@@ -85,8 +140,9 @@
       var second = timeset.getSeconds();
       
       // Output the result in an element with id="demo"
-      document.getElementById("demo").innerHTML = hour + "시간 "
-      + minute + "분 " + second + "초 ";
+      document.getElementById("hour").innerHTML = hour;
+      document.getElementById("minute").innerHTML = minute;
+      document.getElementById("second").innerHTML = second;
       
       // If the count down is over, write some text 
       if (distance > 0) {
@@ -163,112 +219,7 @@
 </div>
 
 
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>jQuery countdown-timer.js Demo Page</title>
-    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
-    <script src="countdown-timer.js"></script>
-    <style>
-html {
-  width: 100%;
-  height: 100%;
-}
 
-body {
-  background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
-  font-family: 'Quicksand', sans-serif;
-}
-
-.countdown-timer-wrapper {
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.6);
-  margin-bottom: 20px;
-  max-width: 300px;
-  margin: 50px auto;
-}
-
-.countdown-timer-wrapper h5 {
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  text-align: center;
-  padding-top: 10px;
-  text-shadow: none;
-}
-
-.countdown-timer-wrapper .timer {
-  padding: 10px;
-  text-align: center;
-  padding-top: 15px;
-}
-
-.countdown-timer-wrapper .timer .timer-wrapper {
-  display: inline-block;
-  width: 60px;
-  height: 50px;
-}
-
-.countdown-timer-wrapper .timer .timer-wrapper .time {
-  font-size: 28px;
-  font-weight: bold;
-  color: #ffffff;
-}
-
-.countdown-timer-wrapper .timer .timer-wrapper .text {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.6);
-}
-h1 { margin:150px auto; text-align:center;}
-</style>
-    </head>
-
-    <body>
-    <div id="jquery-script-menu">
-<div class="jquery-script-center">
-<ul>
-<li><a href="http://www.jqueryscript.net/time-clock/Digital-Countdown-Clock-jQuery">Download This Plugin</a></li>
-<li><a href="http://www.jqueryscript.net/">Back To jQueryScript.Net</a></li>
-</ul>
-<div class="jquery-script-ads"><script type="text/javascript"><!--
-google_ad_client = "ca-pub-2783044520727903";
-/* jQuery_demo */
-google_ad_slot = "2780937993";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script></div>
-<div class="jquery-script-clear"></div>
-</div>
-</div>
-    <h1>jQuery countdown-timer.js Demo Page</h1>
-<div class="countdown-timer-wrapper">
-      <div class="timer" id="countdown"></div>
-    </div>
-<script>
-        $(document).ready(function () {
-
-            var myDate = new Date();
-myDate.setDate(myDate.getDate() + 2);
-            $("#countdown").countdown(myDate, function (event) {
-                $(this).html(
-                    event.strftime(
-                        '<div class="timer-wrapper"><div class="time">%D</div><span class="text">days</span></div><div class="timer-wrapper"><div class="time">%H</div><span class="text">hrs</span></div><div class="timer-wrapper"><div class="time">%M</div><span class="text">mins</span></div><div class="timer-wrapper"><div class="time">%S</div><span class="text">sec</span></div>'
-                    )
-                );
-            });
-
-        });
-    </script>
-</body>
-</html>
 
 
 
@@ -288,18 +239,21 @@ myDate.setDate(myDate.getDate() + 2);
   </div>
 
 </div>
-<%= @user.status %>
     
 <!--퀘스트 발급 버튼-->
 <div class="center">
   <a class="waves-effect waves-light btn-large grey darken-1 col s12 offset-5" href="/makeQuest" style ="margin-bottom: 5em; margin-top: 5em;"><i class="material-icons right">send</i>퀘스트 발급받기</a>
 </div>
+
+
+
+
+<script src="<%= asset_path("countdown-timer.js", type: :javascript, skip_pipeline: true) %>"></script>
 <script>
   function autoplay() {
     $('.carousel').carousel('next');
     setTimeout(autoplay, 5000);
 }
-
 
 
 </script>

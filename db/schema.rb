@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170812133934) do
+ActiveRecord::Schema.define(version: 20170815120055) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -42,6 +42,9 @@ ActiveRecord::Schema.define(version: 20170812133934) do
     t.string   "time"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "condition"
+    t.string   "needs"
+    t.string   "explain"
   end
 
   create_table "userquests", force: :cascade do |t|
@@ -50,6 +53,8 @@ ActiveRecord::Schema.define(version: 20170812133934) do
     t.string   "success"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "feel"
+    t.string   "data"
   end
 
   add_index "userquests", ["quest_id"], name: "index_userquests_on_quest_id"

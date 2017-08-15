@@ -57,6 +57,9 @@ Rails.application.routes.draw do
   
   get '/home/test'
   
+  
+  
+  post '/home/makeQuest_quest/:quest_id/:user_id' => 'home#completeQuest'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

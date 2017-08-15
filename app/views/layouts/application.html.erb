@@ -19,7 +19,7 @@
         <li><a href="/makeQuest_quest">MY QUEST</a></li>
         <li><a href="/makeQuest_new">MAKE QUEST</a></li>
         <% if user_signed_in? %>
-        <li><a href="/my_page"><%= current_user.nickname%> </a></li>
+        <li><a href="/my_page?theme=전체"><%= current_user.nickname%> </a></li>
         <li><a href="/users/sign_out" data-method="delete" onclick="Materialize.toast('로그아웃되었습니다.', 4000)">logout</a></li>
         <% else %>
         <li><a href="/users/sign_in">login</a></li>
