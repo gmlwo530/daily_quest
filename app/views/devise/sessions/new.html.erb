@@ -2,8 +2,9 @@
         <div class="drawsvg" style=" position: relative; z-index:100">
         <svg version="1.1" viewBox="0 0 700 300">
           <symbol id="fade-text" >
-            <text style="font-family:AlexBrush" x="45%" y="40%" text-anchor="middle">Daily</text>
-            <text style="font-family:AlexBrush" x="55%" y="60%" text-anchor="middle">Quest</text>
+            <text style="font-family:AlexBrush" x="45%" y="40%" text-anchor="middle">Daily Quest</text>
+            <text style="font-family:AlexBrush" x="55%" y="60%" text-anchor="middle" size="50px">Hack your day</text>
+            
           </symbol>
           <g>
             <use class="stroke" xlink:href="#fade-text"/>
@@ -16,7 +17,7 @@
   
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="row col s6 m3 l3 input-field">
-      <i class="material-icons small  col s1 m1 l1">mail</i>
+      <i class="material-icons small col s2 m2 l2">mail</i>
       <div class="input-field offset-s2 col s8 m7 l7">
         <%= f.label :email %><br />
         <%= f.email_field :email, autofocus: true %>
@@ -24,7 +25,7 @@
     </div>
     
     <div class="row col s6 m3 l3 input-field">
-      <i class="material-icons small col s1 m1 l1">vpn_key</i>
+      <i class="material-icons small col s2 m2 l2">vpn_key</i>
       <div class="input-field offset-s2 col s8 m7 l7">
         <%= f.label :password %><br />
         <%= f.password_field :password, autocomplete: "off" %>
@@ -32,10 +33,10 @@
     </div>
   
     <% if devise_mapping.rememberable? -%>
-      <div class="field row center">
+      <div class="field row">
         <%= f.check_box :remember_me , id:"text5"%>
         <%= f.label :remember_me, for:"text5" %>
-        <div class="right" style="margin-right: 100"> <%= link_to "Forgot your password?", new_password_path(resource_name) %></div>
+        <div class="right" style="margin-right: 100"><br> <%= link_to "Forgot your password?", new_password_path(resource_name) %></div>
       </div>
     <% end -%>
   

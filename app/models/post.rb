@@ -1,10 +1,11 @@
 class Post < ActiveRecord::Base
+  resourcify
+  include Authority::Abilities
+  
   belongs_to :user
-  validates_presence_of :title, :content, :theme
+  validates_presence_of :title, :content, :theme, :quest_id, :status
   
-  searchable do
-    string :title
-  end
+  paginates_per 10
   
-  paginates_per 3
+  
 end

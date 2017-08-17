@@ -45,28 +45,34 @@ class HomeController < ApplicationController
   
   def completeQuest  #퀘스트 포기와 성공 둘다 넣어 주겠습니다. 이름을 successQuest에서 completeQuest로 변경합니다
     @user = current_user
-    @user.update(status: '2') #퀘스트가 완료되면 유저는 다시 퀘스트 미발급 상태(false)가 됩니다
+    @user.update(status: false) #퀘스트가 완료되면 유저는 다시 퀘스트 미발급 상태(false)가 됩니다
   
   
     userquest = Userquest.find_by(user_id: @user.id, success: 2)
-    userquest.update(success: 1)
-    quest = Quest.find_by(userquest.quest_id)
+    # userquest.update(success: 1)
+    # 잠깐만 주석처리 해 둘게요
+    @quest = Quest.find_by_id(userquest.quest_id)
     
     
-    if quest.condition = "Photo"
+    if @quest.condition == "Photo"
     
     
-    elsif quest.condition ="Array"
+    elsif @quest.condition == "Array"
     #Array 퀘스트 성공 기록입니다.
-    index = 1
-    # arraydata =
-    #   quest.needs.to_i.times do
-    #   index.to_s + params[index]
+    
+    
+    userquest.update(data: params[:data])
+    # index = 0
+    # questdata = Array.new
+    #   questdata.insert(params[:data])
+    # @quest.needs.to_i.times do
+    #   # questdata.push(index)
+    #   questdata.insert(params[:data])
     #   index += 1
+      
+    # end
     
-    userquest.update(data: arraydata.to_s)
-    
-    
+    # userquest.update(data: questdata)
     else
     #Write 퀘스트 성공 기록입니다
     userquest.update(data: params[:writedata])
@@ -91,6 +97,7 @@ class HomeController < ApplicationController
   def makeQuest_failed   #퀘스트실패시 사진
     
     @user = current_user
+    @user.update(status: false)
     userquest = Userquest.find_by(user_id: @user.id, success: '2')
     userquest.update(success: '0')
     
@@ -98,6 +105,8 @@ class HomeController < ApplicationController
   end
   
   def makeQuest_success  #퀘스트성공시 사진
+    # user = Userquest.find_by(user_id: current_user.id, success: '2')
+    # user.update(success: '1')
     @num = rand(5)+1
   end
   
@@ -159,19 +168,20 @@ class HomeController < ApplicationController
     @quest4 = Quest.find_by(id: temp4)
     @quest5 = Quest.find_by(id: temp5)
     
-     @userquest = Userquest.find_by(user_id: @user.id, success: 0)
+     @userquest = Userquest.find_by(user_id: @user.id, success: [0, 1, 2])
     @userquest_profile_success_size = Userquest.where(user_id: @user.id, success: true).size
      @userquest_profile_fail_size = Userquest.where(user_id: @user.id, success: false).size
      
      #사용자가 어떤 테마의 퀘스트를 많이 했을까요?
      userquest_for_max = Userquest.where(user_id: @user.id)
      
-     for i in 0..(userquest_for_max.size - 1)
-      jung = 0
+     jung = 0
       ja = 0
       hack = 0
       tu = 0
       adv = 0
+     for i in 0..(userquest_for_max.size - 1)
+      
       if userquest_for_max[i].quest.theme == "정"
         jung += 1
       elsif userquest_for_max[i].quest.theme == "자기계발"
@@ -208,6 +218,10 @@ class HomeController < ApplicationController
         @theme = "모험"
       end
       ####### 짜놓고 보니깐 극혐이네 되긴 돼요
+  end
+  
+  def admin
+    @userquest = Userquest.all.order("created_at DESC")
   end
   
 end

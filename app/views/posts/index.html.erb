@@ -1,22 +1,47 @@
-<p id="notice"><%= notice %></p>
-<div class="center">
-<h1>퀘스트 안녕하십니까?</h1>
-</div>
+
+<div class="center"><img style="margin: 20px;" src="<%= asset_path ("community.png") %>"></div>
+
+<div class="row" style="margin-top:20px; maring-bottom:20px;">
+  <div class="col offset-m2 offset-l2 col m4 l4" style="margin-top:20px;">
+    <form action="/posts">
+      <a href="#" class="waves-effect waves-red btn" style="background-color:#fa8072" onclick="this.parentNode.submit()">ALL</a>
+    </form>
+    <form action="/posts">
+      <a href="#" class="waves-effect waves-red btn" style="background-color:#fa8072" onclick="this.parentNode.submit()">RUNNING</a>
+    </form>
+    <form action="/posts">
+      <a href="#" class="waves-effect waves-red btn" style="background-color:#fa8072" onclick="this.parentNode.submit()">COMPLETE</a>
+    </form>  
+  </div>
   
-<div class="container">
-  <div class="white z-depth-3">
-    <div class="input-field suffix offset-m8 offset-s6 offset-m8 col s6 m4 l4 right">
-      <div class="row">
-        <%= form_tag search_posts_path, :method => :get do %>
-        <%= text_field_tag :query, params[:query] %>
-        <%= submit_tag "검색"%>
-        <a href="/posts/search" name="commit"><i class="material-icons teal-text">search</i></a>
-        <% end %>
+  <div class="input-field col s6 m2 l2">
+    <form>
+      <select>
+        <option value="" disabled selected>Choose your option</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+    </form>
+  </div>
+  
+  <form class="col s6 m3 l3">
+      <div class="input-field suffix">
+        <input id="icon_prefix" type="text" class="validate red-text text-lighten-4">
+        <label for="icon_prefix">미션 찾기</label>
+        <a href="#"><i class="material-icons teal-text">search</i></a>
       </div>
-  </div>  
+  </form>
+  
+</div>
+
+
+<div class="row" >
+  <div class="offset-m1 offset-l1 col m10 l10">
     <table class="striped">
       <thead>
         <tr>
+          <th>Status</th>
           <th>Theme</th>
           <th>Title</th>
           <th>User</th>
@@ -25,20 +50,40 @@
       </thead>
     
       <tbody>
+        
         <% @posts.each do |post| %>
+          <% if @userquest.quest_id == post.quest_id %>
           <tr>
-            <td><%= post.theme %></td>
-            <td><%= link_to "#{post.title}", post %></td>
-            <td><%= post.user.nickname %></td>
-            <td><%= link_to '수정하기', edit_post_path(post) %></td>
-            <td><a href="/posts/<%= post.id %>" data-confirm="Are you sure?" data-method="delete" rel="nofollow" ><i class="material-icons" style="color: #fa8072">cancel</i></a></td>   <!-- 수정중-->
+            <td>
+              <% if post.status == "1" %>
+                  <%= "완료" %>
+              <% else %>
+                  <%= "진행중" %>
+              <% end %>
+            </td>
+            <td><%= post.theme%></td>
+            <td class="collection"><%= link_to "#{post.title}", post, class: "collection-item N/A transparent black-text" %></td>
+            <td><%= post.user.nickname%></td>
+            <td><%= link_to btn('edit'), edit_post_path(post) if post.updatable_by? current_user %></td>
+            <td><%= link_to btn('delete'), post, method: :delete, data: { confirm: 'Are you sure?' } if post.deletable_by? current_user %></td>
           </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
   </div>
-  <br>
-  
-  <%= link_to '새글 쓰기', new_post_path %>
 </div>
 
+<div class="row">
+  <div class="btn offset-m9 offset-l9 col m1 l1" style="background-color:#fa8072; margin-top:30px;">
+    <%= paginate @posts %>
+    <%= link_to 'NEW POST', new_post_path, class: "white-text"%>
+  </div>
+</div>
+
+<script>
+  
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+</script>

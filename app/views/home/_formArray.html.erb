@@ -1,7 +1,7 @@
 <div class="container">
 
-  <% index = 1 %>
-  <form class="" action="/home/makeQuest_quest/<%= @userquest.id %>/<%= @user.id %>" method="post">
+  <% index = 0 %>
+  <form name="data" action="/home/makeQuest_quest/<%= @userquest.id %>/<%= @user.id %>" method="post">
 
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <% @quest.needs.to_i.times do |list| %>
@@ -13,10 +13,14 @@
     <% index += 1 %>
     <% end %>
     <span id="counter">###</span>
+  
     <button class="btn waves-effect waves-light disabled" id ="completebutton" type="submit" name="action">완료하기
       <i class="material-icons right">send</i>
     </button>
+    <a href="/home/makeQuest_quest" class="btn red">포기하기</a>
+  
   </form>
+  
 
 </div>
 
@@ -50,7 +54,7 @@ $(document).ready(function(){
     checkednum = $(".checkBox:checked").length ;
     $('#counter').html('현재 ' + checkednum + ' 개 작성되었습니다');
 
-    if(checkednum == <%=index - 1 %>){
+    if(checkednum == <%=index %>){
           $('#completebutton').removeClass("disabled");
       }
       else {
@@ -59,4 +63,14 @@ $(document).ready(function(){
   })
 });
 
+
+
+//   $('form').submit(function() {
+
+//   data = $(this).serializeArray();
+//   console.log($(this).serializeArray());
+//   alert(data)
+//   return data;
+
+// });
 </script>

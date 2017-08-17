@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'sunspot_rails'
-gem 'sunspot_solr'
-
+gem 'rolify'
+gem 'authority'
 gem 'carrierwave', '~> 1.0'
 gem 'kaminari'
 gem 'jquery-turbolinks'

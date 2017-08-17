@@ -14,10 +14,15 @@
       <a style="margin-left:50px "href="/" class="brand-logo"><img src="<%= asset_path ("DQ.logo_final.png") %>" style ="height:50px; padding-top:10px; padding-left:15px; " ></a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down" style="margin-left:50px; margin-right: 50px; font-style: italic;">
+        <% if @user_role.has_role? :admin %> 
+          <li><a href = "/admin">ADMIN PAGE</a></li>
+        <% end %>
         <li><a href="/posts">COMMUNITY</a></li>
-        <li><a href="/makeQuest_success">SUCCESS</a></li>
-        <li><a href="/makeQuest_quest">MY QUEST</a></li>
-        <li><a href="/makeQuest_new">MAKE QUEST</a></li>
+        <% if @user_role.status == true %>
+          <li><a href="/makeQuest_quest">MY QUEST</a></li>
+        <% else %>
+          <li><a href="/makeQuest_new">MAKE QUEST</a></li>
+        <% end %>
         <% if user_signed_in? %>
         <li><a href="/my_page?theme=전체"><%= current_user.nickname%> </a></li>
         <li><a href="/users/sign_out" data-method="delete" onclick="Materialize.toast('로그아웃되었습니다.', 4000)">logout</a></li>

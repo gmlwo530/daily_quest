@@ -1,22 +1,13 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  
-  def search
-    @posts = Post.search do
-      keywords params[:query]
-    end.result
-    
-    @posts = @posts.order(created_at: :desc).page(params[:page])
-    
-    respond_to do |format|
-      format.html { render :action => 'index' }
-      format.xml  { render :xml => @posts }
-    end
-  end
+  before_action :authenticate_user!, except: [ :index, :show ]
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.order(created_at: :desc).page(params[:page])
+    @user = current_user
+    @userquest = Userquest.where(user_id: @user.id, success: [1, 2]).last
+    
   end
 
   # GET /posts/1
@@ -27,10 +18,15 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @user = current_user
+    @userquest = Userquest.where(user_id: @user.id, success: [1, 2]).last
   end
 
   # GET /posts/1/edit
   def edit
+    authorize_action_for @post
+    @user = current_user
+    @userquest = Userquest.where(user_id: @user.id, success: [1, 2]).last
   end
 
   # POST /posts
@@ -39,6 +35,9 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user
     @post.theme = params[:theme]
+    @post.quest_id = params[:quest_id]
+    @post.status = params[:status]
+    
 
     respond_to do |format|
       if @post.save
@@ -54,6 +53,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    authorize_action_for @post
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -68,6 +68,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
+    authorize_action_for @post
     @post.destroy
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }

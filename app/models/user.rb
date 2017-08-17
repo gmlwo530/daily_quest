@@ -1,12 +1,15 @@
 class User < ActiveRecord::Base
+  rolify
+  include Authority::UserAbilities
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
          
-  has_many :userquests
+  has_many :userquests, dependent: :destroy
   has_many :quests, through: :userquests
-  has_many :posts
+  has_many :posts, dependent: :destroy
   
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
@@ -64,4 +67,14 @@ class User < ActiveRecord::Base
   def email_required?
     false
   end
+  
+  after_create :set_default_role
+
+  private
+
+  def set_default_role
+    add_role :user
+  end
+  
+  after_create :set_default_role, if: Proc.new { User.count > 1 }
 end
