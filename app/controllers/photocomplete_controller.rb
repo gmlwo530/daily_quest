@@ -6,11 +6,18 @@ class PhotocompleteController < ApplicationController
   end
   
   def check
+    @user = current_user
+    userquest = Userquest.where(user_id: @user.id, success: 2).last
+    
+
+    @quest = Quest.find_by_id(userquest.quest_id)
+    
     require 'aws-sdk-rails'
 
-    image = Userquest.find(params[:id]).photoData.to_s
-    quest = Userquest.find(params[:id]).quest_id.to_s
-    @questneeds = Quest.find(quest).needs.to_s
+    image = Userquest.find(userquest.id).photoData.to_s
+    # quest = Userquest.find(@quest.needs).quest_id.to_s
+
+    @questneeds = @quest.needs.to_s
 
     Aws.config.update({
        credentials: Aws::Credentials.new(ENV["AWS_Key"], ENV["AWS_Secret"]),
@@ -30,12 +37,25 @@ class PhotocompleteController < ApplicationController
               }
           )
 
-    result = resp.labels.first[:name]
+    result = resp.labels
     
-    if result == @questneeds
-      redirect_to '/success'
+    # arr = [#<struct Aws::Rekognition::Types::Label name="Food", confidence=97.53509521484375>, #<struct Aws::Rekognition::Types::Label name="Pasta", confidence=97.53509521484375>, #<struct Aws::Rekognition::Types::Label name="Spaghetti", confidence=97.53509521484375>, #<struct Aws::Rekognition::Types::Label name="Bowl", confidence=76.52090454101562>, #<struct Aws::Rekognition::Types::Label name="Dish", confidence=76.52090454101562>, #<struct Aws::Rekognition::Types::Label name="Meal", confidence=76.52090454101562>, #<struct Aws::Rekognition::Types::Label name="Plate", confidence=76.52090454101562>]
+
+    result.each do |a|
+      if a.name.include?(@questneeds)
+        @for_min = a.name
+      end
+    end
+
+    
+    
+    if @for_min.present?
+      userquest.update(success: '1')
+      redirect_to '/makeQuest_success'
     else
       
-      redirect_to '/fail'
+      redirect_to '/makeQuest_failed'
     end
+    
+  end
 end

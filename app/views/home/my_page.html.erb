@@ -106,10 +106,10 @@
       <section class="grid-wrap">
 				<ul class="grid swipe-right" id="grid">
 					<li class="title-box">
-						<h2><a href="/posts?status=전체">당신의 퀘스트 안녕하십니까?</a></h2>
+						<h2><a href="/posts?status=전체">퀘스트 게시판 바로가기</a></h2>
 					</li>
 					<% @userquest_select.each do |uq| %>
-					  <li><a href="#"><img center src="/fail4.jpg" alt="dummy"><h3><%= uq.quest.content %></h3></a></li>
+					  <li><a href="#"><img center src=<%= uq.photoData %> alt="dummy"><h3><%= uq.quest.content %></h3></a></li>
 	        <% end %>
 				</ul>
 			</section>

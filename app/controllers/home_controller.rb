@@ -38,7 +38,7 @@ class HomeController < ApplicationController
   def makeQuest_quest
    
     @user = current_user
-    @userquest = Userquest.find_by(user_id: @user.id, success: '2')
+    @userquest = Userquest.where(user_id: @user.id, success: '2').last
     
     @quest = Quest.find_by_id(@userquest.quest_id)
     @questCondition = @quest.condition
@@ -49,32 +49,36 @@ class HomeController < ApplicationController
     @user = current_user
     @user.update(status: false) #퀘스트가 완료되면 유저는 다시 퀘스트 미발급 상태(false)가 됩니다
   
-  
-    userquest = Userquest.find_by(user_id: @user.id, success: 2)
+    
+    userquest = Userquest.where(user_id: @user.id, success: 2).last
     
 
     @quest = Quest.find_by_id(userquest.quest_id)
     
     
     if @quest.condition == "Photo"
-      # img = Userquest.new
+      if @quest.needs.nil?
+      userquest.update(success: 1)
+      redirect_to '/makeQuest_success' 
+      else
+      userquest.update(photoData: params[:photoData])
+      redirect_to '/check'
       
-      # uploader = Image.create(img_url: params[:photoData])
-      # img.img_url = uploader.url
-      
-      userquest.update(success: 1, photoData: params[:photoData])
-      redirect_to '/complete/' + userquest.id
+      end
     elsif @quest.condition == "Array"
     #Array 퀘스트 성공 기록입니다.
   
     userquest.update(data: params[:array], feel: params[:feel], success: 1)
+    redirect_to '/makeQuest_success'
     elsif @quest.condition == "Write"
     #Write 퀘스트 성공 기록입니다
     userquest.update(stringData: params[:writedata], feel: params[:feel], success: 1)
+    redirect_to '/makeQuest_success'
     else
       userquest.update(feel: params[:feel], success: 1)
+      redirect_to '/makeQuest_success'
     end
-    redirect_to '/makeQuest_success'
+    
     # unless params[:quest_id].nil? #퀘스트를 성공하면 usersquest모델에 있는 유저의 퀘스트가 success : false에서 success : true로 바뀝니다.
     #   userquest = Userquest.find_by(user_id: @user.id, success: '2')
     #   userquest.update(success: '1')
@@ -191,8 +195,7 @@ class HomeController < ApplicationController
       end
     end
     #핕터링 끝
-    
-    
+
     # if params[:icon_prefix]
     #   @userquest_all = Userquest.search(user_id, params[:icon_prefix])
     # else 
@@ -229,6 +232,7 @@ class HomeController < ApplicationController
      @userquest = Userquest.find_by(user_id: @user.id, success: [0, 1, 2])
     @userquest_profile_success_size = Userquest.where(user_id: @user.id, success: true).size
      @userquest_profile_fail_size = Userquest.where(user_id: @user.id, success: false).size
+     
      
      #사용자가 어떤 테마의 퀘스트를 많이 했을까요?
      userquest_for_max = Userquest.where(user_id: @user.id)

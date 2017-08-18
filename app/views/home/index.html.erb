@@ -63,7 +63,9 @@
       <ul class="collection with-header center">
         <a class="collection-item" href="/my_page?theme=전체" style="color:#ffffff; background-color:#690505; letter-spacing:3px;"><%=show_user%><i class="material-icons">settings</i></a>
         <li class="collection-header"><img src="<%= current_user.profile_img %>" style="border: #c5c5c5 solid; margin:8px;" width= 100%; height=100%;></li>
-        <li class="collection-item" style="letter-spacing:1.5px fontsize:5px;"><%=show_point%> Point<i class="material-icons" style="color:#ffd700; margin-left:5px;">copyright</i></li>
+        <li class="collection-item" style="letter-spacing:1.5px fontsize:5px;"><%=show_point%> P
+        
+        oint<i class="material-icons" style="color:#ffd700; margin-left:5px;">copyright</i></li>
         <li class="collection-item" style="letter-spacing:1.5px">퀘스트 성공률 : <%=show_rate%></li>
         <li class="collection-item" style="letter-spacing:1.5px">성공한 퀘스트 수 : <%=show_success%></li>
         <li class="collection-item" style="letter-spacing:1.5px">실패한 퀘스트 수 : <%=show_fail%></li>
@@ -73,32 +75,44 @@
     </div>
   </div>
 
-  <div class="col s8 m8 l8 hotpink-5 z-depth-3" style="margin:50px; border: #690505 solid;">
+  <div class="col s8 m8 l8" >
 <!--카테고리-->
 
     <% if !current_user.status %>
-    <div class="center"><img style="margin: 20px;" src="<%= asset_path ("text_fin.png") %>"></div>
-      	<div class="carousel" >
-            <a class="carousel-item modal-trigger quest3 N/A transparent" href="#modal3">
-      			</a>
-            
-            <a class="carousel-item modal-trigger quest1 N/A transparent" href="#modal1">
-           </a>
-      	
-            <a class="carousel-item modal-trigger quest2 N/A transparent" href="#modal2">
-      			</a>
-      			
-            <a class="carousel-item modal-trigger quest4 N/A transparent" href="#modal4">
-      			</a>
-      			
-            <a class="carousel-item modal-trigger quest5 N/A transparent" href="#modal5">
-      			</a>
-      		</div>
-    		</div>
+    <div class="hotpink-5 z-depth-3" style="margin-top:50px; margin-bottom:50px; border: #690505 solid;">
+      <div class="center"><img style="margin: 20px;" src="<%= asset_path ("text_fin.png") %>"></div>
+    	<div class="carousel" >
+          <a class="carousel-item modal-trigger quest3 N/A transparent" href="#modal3">
+    			</a>
+          
+          <a class="carousel-item modal-trigger quest1 N/A transparent" href="#modal1">
+         </a>
+    	
+          <a class="carousel-item modal-trigger quest2 N/A transparent" href="#modal2">
+    			</a>
+    			
+          <a class="carousel-item modal-trigger quest4 N/A transparent" href="#modal4">
+    			</a>
+    			
+          <a class="carousel-item modal-trigger quest5 N/A transparent" href="#modal5">
+    			</a>
+    	</div>
+  	</div>
+  	
+  	<div class= "hotpink-5 z-depth-3" style=" border: #690505 solid;">
+      <div class="center"><img style="height:80px;" src="<%= asset_path ("introduce.png") %>"></div>
+      <div class="carousel carousel-slider " data-indicators="true" >
+        <div class="carousel-item black-text" id="carousel_num1" href="#one!"><img src="/111.png"></div>
+        <div class="carousel-item black-text red" id="carousel_num2" href="#two!"><img src="/222.png"></div>
+      </div>
+    </div>
+  	
+  </div>
     <% else %>
-      <div class="countdown-timer-wrapper">
+    <div class="hotpink-5 z-depth-3" style="margin-top:50px; padding-bottom: 1.5em; margin-bottom:2em;">
+      <div class="center"><img style="margin-top:2em; height:13em;" src="<%= asset_path ("my_quest_fin.png")%>"></div>
+      <div class="countdown-timer-wrapper" style="padding:1.5em; letter-spacing: 3px; border-radius:20px; border: solid white 4px;">
         <div class="timer" id="countdown">
-          <div class="timer-wrapper"></div>
           <div class="timer-wrapper">
             <div id="hour" class="time">%H</div>
             <span class="text">hrs</span>
@@ -112,6 +126,14 @@
             <span class="text">sec</span>
           </div>
         </div>
+      </div>
+    </div>
+      
+      <div class= "hotpink-5 z-depth-3">
+        <div class="center"><img style="height:80px;" src="<%= asset_path ("introduce.png") %>"></div>
+        <div class="carousel carousel-slider " data-indicators="true" >
+          <div class="carousel-item black-text" id="carousel_num1" href="#one!"><img src="/111.png"></div>
+          <div class="carousel-item black-text red" id="carousel_num2" href="#two!"><img src="/222.png"></div>
       </div>
       
       <script>
@@ -154,19 +176,13 @@
         }, 1000);
       </script>
     <% end %>
+    
+    
 
   
-  <div class= "col s8 m8 l8 hotpink-5 z-depth-3" style="margin-left:50px; border: #690505 solid;">
-    <div class="center"><img style="height:80px;" src="<%= asset_path ("introduce.png") %>"></div>
-    <div class="carousel carousel-slider " data-indicators="true" >
-      <div class="carousel-item black-text" id="carousel_num1" href="#one!"></div>
-      <div class="carousel-item black-text red" id="carousel_num2" href="#two!"></div>
-      <div class="carousel-item black-text black" id="carousel_num3" href="#three!"></div>
-      <div class="carousel-item black-text blue" id="carousel_num4" href="#four!"></div>
-    </div>
-  </div>
   
 </div>
+
 
 
   

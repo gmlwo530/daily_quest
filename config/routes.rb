@@ -70,6 +70,10 @@ Rails.application.routes.draw do
   
   post '/home/create' => 'home#create'
   
+  post '/upload' => 'home#completeQuest'
+  get '/check' => 'photocomplete#check'
+  get '/fail' => 'photocomplete#fail'
+  get '/success' => 'photocomplete#success'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
