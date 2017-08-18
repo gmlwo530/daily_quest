@@ -11,15 +11,13 @@
   
   <div class="col m2" style="padding:1.5em; border-left: dotted #cccccc; ">
     <strong style="letter-spacing: 3px;">작성자 : <%= @post.user.nickname %></strong>
-    <img src="<%= @post.user.profile_img %>" style="width:30px; height:30px;">
   </div>
   
 </div>
 
 <div class="hotpink-5 z-depth-3 row" style="margin:4em; margin-top:1em; padding:2em; height: 400px;">
   <div class=>
-    <strong>Content:</strong>
-    <%= @post.content %>
+    <strong><%= @post.content %></strong>
   </div>
 </div>
   

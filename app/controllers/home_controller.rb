@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!
-  before_action :image
+  # before_action :image
   
   def makeQuest_new
     @user = current_user
@@ -11,9 +11,9 @@ class HomeController < ApplicationController
     time = Time.new
     time_day = time.day
     
-    temp1 = (@user.id + time_day) % 8 + 1
-    temp2 = temp1 % 13 + 9
-    temp3 = (temp1 + 8) % 11 + 22
+    temp1 = (@user.id + time_day) % 10 + 1
+    temp2 = temp1 % 13 + 11
+    temp3 = (temp1 + 8) % 13 + 22
     temp4 = (temp1 + 21) % 3 + 33
     temp5 = (temp1 + 32) % 5 + 36
     
@@ -57,8 +57,13 @@ class HomeController < ApplicationController
     
     
     if @quest.condition == "Photo"
-    userquest.update(success: 1, photoData: params[:photoData])
-    
+      # img = Userquest.new
+      
+      # uploader = Image.create(img_url: params[:photoData])
+      # img.img_url = uploader.url
+      
+      userquest.update(success: 1, photoData: params[:photoData])
+      redirect_to '/complete/' + userquest.id
     elsif @quest.condition == "Array"
     #Array 퀘스트 성공 기록입니다.
   
@@ -264,7 +269,7 @@ class HomeController < ApplicationController
       elsif max == ja
         @theme = "자기계발"
       elsif max == hack
-        @theme = "해커톤"
+        @theme = "해커���"
       elsif max == tu
         @theme = "튜토리얼"
       else
@@ -275,26 +280,26 @@ class HomeController < ApplicationController
   
   
   
-  def create
-    @user = current_user
-    @userquest = Userquest.find_by(user_id: @user.id, success: '2')
+  # def create
+  #   @user = current_user
+  #   @userquest = Userquest.find_by(user_id: @user.id, success: '2')
     
-    image = Image.new
+  #   image = Image.new
     
-    uploader = ImgUploader.new
-    uploader.store!(params[:img])
-    image.img_url = uploader.url
+  #   uploader = ImgUploader.new
+  #   uploader.store!(params[:photoData])
+  #   image.img_url = uploader.url
     
-    image.save
+  #   image.save
     
-    redirect_to "/"
+  #   redirect_to "/"
     
-  end
+  # end
   
-  private
+  # private
   
-  def image
-    @image = Image.all
-  end
+  # def image
+  #   @image = Image.all
+  # end
 
 end

@@ -62,31 +62,14 @@
           <div class="offset-m1 col m2 center" style="padding:0.5em; border-radius:20px; border:solid #ffd3b6 2px;"><strong>퀘스트 설명</strong></div>
           <div class="offset-m1 col m8" style="padding:0.5em; margin-bottom:1em;"><strong><%= @userquest.quest.description %></strong></div>
           <div class="offset-m1 col m2 center" style="padding:0.5em; border-radius:20px; border:solid #ffd3b6 2px; margin-top:1em;"><strong>퀘스트 달성방법</strong></div>
-          <div class="offset-m1 col m8" style="padding:0.5em; margin-bottom:1em;"><strong><%= @userquest.quest.howTo.gsub("\n", "<br>").html_safe%></strong></div>
+          <div class="offset-m1 col m8" style="padding:0.5em;"><strong><%= @userquest.quest.howTo.gsub("\n", "<br>").html_safe%></strong></div>
         </div>
       </div>
     </div>
   </div>
 
 
-<!--s3 구현-->
-<!--<form action="/home/create" method="POST" enctype="multipart/form-data">-->
-<!--    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>-->
-<!--    <input type="hidden" name="user_id" value="<%= current_user.id %>"> <!-- 작성자가 누군지 보이지 않게 등록하기 -->
-    
-<!--    <div class="form-group">-->
-<!--      <input type="file" name="pic" accept="image/*">-->
-<!--    </div>-->
-<!--    <button type="submit" class="btn btn-default">사진 올리기</button>-->
-<!--  </form>-->
-  
-<!--  <% @image.each do |image| %>-->
-    
-<!--    <% unless image.img_url.nil? %>-->
-<!--      <img src = "<%= image.img_url %>" width="300" height="300">-->
-<!--    <% end %>-->
-    
-<!--  <% end %>-->
+
   
   
 <!--퀘스트 완료 방법을 측정합니다-->
@@ -103,3 +86,16 @@
   <!--_formWrite.html.erb 를 표시합니다-->
 <% end %>
 </div>
+
+<style>
+     /* label focus color */
+    .input-field input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+     color: red !important;
+    }
+
+/* label underline focus color */
+    .input-field input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
+     border-bottom: 1px solid red !important;
+     box-shadow: 0 1px 0 0 red !important;
+    }
+</style>

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  get 'photocomplete/success'
+
+  get 'photocomplete/fail'
+
   get 'admin/index'
 
   resources :posts
@@ -64,7 +68,7 @@ Rails.application.routes.draw do
   
   post '/home/makeQuest_quest/:quest_id/:user_id' => 'home#completeQuest'
   
-  post '/home/create'
+  post '/home/create' => 'home#create'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

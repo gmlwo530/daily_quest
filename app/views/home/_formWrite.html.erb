@@ -1,27 +1,26 @@
 <div class="container">
+  <div class="row">
+   <span class="center offset-m8 col m4" id="counter">###</span>
+  </div>
+    <!-- 글자수 카운터 위치 -->
 
-
-  <form class="col s12" action="/home/makeQuest_quest/<%= @userquest.id %>/<%= @user.id %>" method="post">
+  <form class="col s12" style="margin-bottom:4em;" action="/home/makeQuest_quest/<%= @userquest.id %>/<%= @user.id %>" method="post">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <div class="row">
-      <div class="row">
-        <div class="input-field col s12">
-          <textarea id="content" class="materialize-textarea" name="writedata"></textarea>
-          <label for="content"><%=@quest.explain %></label>
-        </div>
+      <div class="input-field col s12 m12 l12">
+        <textarea id="content" class="materialize-textarea" name="writedata"></textarea>
+        <label for="content"><%=@quest.explain %></label>
+      </div>
+      <div class="input-field col s12 m12 l12">
+        <textarea id="textarea1" class="materialize-textarea" name ="feel"></textarea>
+        <label for="textarea1">무엇을 느꼈나요?</label>
       </div>
     </div>
     <!--미션 내용 입력 창-->
-    <span id="counter">###</span>
-    <!-- 글자수 카운터 위치 -->
-    
-    <textarea id="textarea1" class="materialize-textarea" name ="feel"></textarea>
-    <label for="textarea1">무엇을 느꼈나요?</label>
-    
-    <i class="material-icons right">send</i>
-    </button>
-    <a href="/home/makeQuest_failed" class="btn red">포기하기</a>
-
+    <div class="center">
+      <a href="/home/makeQuest_quest/<%= @userquest.id %>/<%= @user.id %>" id="success"><input type="submit" class="waves-effect waves-light btn" value="제출하기"></a>
+      <a href="/home/makeQuest_failed" class="btn red">포기하기</a>
+    </div>
   </form>
     
 

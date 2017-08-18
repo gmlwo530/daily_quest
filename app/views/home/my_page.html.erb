@@ -7,6 +7,17 @@
     text-align: center;
     position: center;
     }
+      /* label focus color */
+    .input-field input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+     color: red !important;
+    }
+
+/* label underline focus color */
+    .input-field input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
+     border-bottom: 1px solid red !important;
+     box-shadow: 0 1px 0 0 red !important;
+    }
+    
     </style>
     
       <%show_rate =  ((@userquest_profile_success_size+@userquest_profile_fail_size/@quest_size)*100).to_s + "%" %>
@@ -56,35 +67,35 @@
       <div class=" col s8 m8 l8" style="margin-top:20px;">
           <form action="/my_page" class="left">
            <input type="hidden" name="theme" value='전체'>
-           <a href="#" class="waves-effect waves-red btn " style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()" >전체</a>
+           <a href="#" class="waves-effect waves-red btn " style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()" ><strong>전체</strong></a>
           </form>
           <form action="/my_page" class="left">
            <input type="hidden" name="theme" value='정'>
-           <a href="#" class="waves-effect waves-red btn" style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()">정</a>
+           <a href="#" class="waves-effect waves-red btn" style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()"><strong>정</strong></a>
           </form>
           <form action="/my_page" class="left">
            <input type="hidden" name="theme" value='모험'>
-           <a href="#" class="waves-effect waves-red btn" style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()">모험</a>
+           <a href="#" class="waves-effect waves-red btn" style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()"><strong>모험</strong></a>
           </form>  
           <form action="/my_page" class="left">
            <input type="hidden" name="theme" value='해커톤'>
-           <a href="#" class="waves-effect waves-red btn" style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()">해커톤</a>
+           <a href="#" class="waves-effect waves-red btn" style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()"><strong>해커톤</strong></a>
           </form>
           <form action="/my_page" class="left">
            <input type="hidden" name="theme" value='자기계발'>
-           <a href="#" class="waves-effect waves-red btn" style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()">자기계발</a>
+           <a href="#" class="waves-effect waves-red btn" style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()"><strong>자기계발</strong></a>
           </form>
           <form action="/my_page"class="left">
            <input type="hidden" name="theme" value='튜토리얼'>
-           <a href="#" class="waves-effect waves-red btn" style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()">튜토리얼</a>
+           <a href="#" class="waves-effect waves-red btn" style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()"><strong>튜토리얼</strong></a>
           </form>
       </div>
        <form action="/my_page" class="col s4 m4 l4">
           <div class="row">
             <div class="input-field suffix">
-              <input id="icon_prefix" name="text" type="text" class="validate red-text text-lighten-4">
+              <input id="icon_prefix" name="text" type="text" class="validate">
               <label for="icon_prefix">미션 찾기</label>
-              <a href="#" onclick="this.parentNode.submit()"><i class="material-icons teal-text">search</i></a>
+              <a href="#" onclick="this.parentNode.submit()"><i class="material-icons red-text">search</i></a>
             </div>
           </div>
         </form>
