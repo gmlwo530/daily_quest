@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'fog-aws'
 gem 'rolify'
 gem 'authority'
 gem 'carrierwave', '~> 1.0'
@@ -55,3 +56,6 @@ group :development do
   gem 'spring'
 end
 
+gem 'aws-sdk-rails'
+gem 'figaro'
+gem 'therubyracer', platforms: :ruby

@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
   
+  get 'admin/index'
+
   resources :posts
+  
   
   devise_for :users, :controllers => { omniauth_callbacks: 'user/omniauth_callbacks'}
   
   root 'home#index'
+  
+  get 'home/index2'
 
-  get '/admin' => 'home#admin'
+  get '/admin' => 'admin#admin'
+  
+  get '/admin/index' => 'admin#index'
   
   get '/test' => 'home#test'
   
@@ -56,6 +63,9 @@ Rails.application.routes.draw do
   
   
   post '/home/makeQuest_quest/:quest_id/:user_id' => 'home#completeQuest'
+  
+  post '/home/create'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

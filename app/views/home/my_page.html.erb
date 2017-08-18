@@ -9,10 +9,10 @@
     }
     </style>
     
-      <%show_rate =  "90%"%>
-      <%show_success =  "9개"%>
-      <%show_fail = "1개"%>
-      <%show_category = "모험"%>
+      <%show_rate =  ((@userquest_profile_success_size+@userquest_profile_fail_size/@quest_size)*100).to_s + "%" %>
+      <%show_success =   @userquest_profile_success_size%>
+      <%show_fail =  @userquest_profile_fail_size %>
+      <%show_category = @theme%>
       <%show_point = "3700"%>
     
 <div class="container">
@@ -79,12 +79,12 @@
            <a href="#" class="waves-effect waves-red btn" style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()">튜토리얼</a>
           </form>
       </div>
-       <form class="col s4 m4 l4">
+       <form action="/my_page" class="col s4 m4 l4">
           <div class="row">
             <div class="input-field suffix">
-              <input id="icon_prefix" type="text" class="validate red-text text-lighten-4">
+              <input id="icon_prefix" name="text" type="text" class="validate red-text text-lighten-4">
               <label for="icon_prefix">미션 찾기</label>
-              <a href="#"><i class="material-icons teal-text">search</i></a>
+              <a href="#" onclick="this.parentNode.submit()"><i class="material-icons teal-text">search</i></a>
             </div>
           </div>
         </form>
@@ -95,7 +95,7 @@
       <section class="grid-wrap">
 				<ul class="grid swipe-right" id="grid">
 					<li class="title-box">
-						<h2><a href="/posts">당신의 퀘스트 안녕하십니까?</a></h2>
+						<h2><a href="/posts?status=전체">당신의 퀘스트 안녕하십니까?</a></h2>
 					</li>
 					<% @userquest_select.each do |uq| %>
 					  <li><a href="#"><img center src="/fail4.jpg" alt="dummy"><h3><%= uq.quest.content %></h3></a></li>

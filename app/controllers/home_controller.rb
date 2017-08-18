@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!
+  before_action :image
+  
   def makeQuest_new
     @user = current_user
   #  if @user.status == 1
@@ -39,8 +41,8 @@ class HomeController < ApplicationController
     @userquest = Userquest.find_by(user_id: @user.id, success: '2')
     
     @quest = Quest.find_by_id(@userquest.quest_id)
-    # @questCondition = quest.condition
-    # @questNeeds = quest.needs
+    @questCondition = @quest.condition
+    @questNeeds = @quest.needs
   end
   
   def completeQuest  #퀘스트 포기와 성공 둘다 넣어 주겠습니다. 이름을 successQuest에서 completeQuest로 변경합니다
@@ -49,33 +51,23 @@ class HomeController < ApplicationController
   
   
     userquest = Userquest.find_by(user_id: @user.id, success: 2)
-    # userquest.update(success: 1)
-    # 잠깐만 주석처리 해 둘게요
+    
+
     @quest = Quest.find_by_id(userquest.quest_id)
     
     
     if @quest.condition == "Photo"
-    
+    userquest.update(success: 1, photoData: params[:photoData])
     
     elsif @quest.condition == "Array"
     #Array 퀘스트 성공 기록입니다.
-    
-    
-    userquest.update(data: params[:data])
-    # index = 0
-    # questdata = Array.new
-    #   questdata.insert(params[:data])
-    # @quest.needs.to_i.times do
-    #   # questdata.push(index)
-    #   questdata.insert(params[:data])
-    #   index += 1
-      
-    # end
-    
-    # userquest.update(data: questdata)
-    else
+  
+    userquest.update(data: params[:array], feel: params[:feel], success: 1)
+    elsif @quest.condition == "Write"
     #Write 퀘스트 성공 기록입니다
-    userquest.update(data: params[:writedata])
+    userquest.update(stringData: params[:writedata], feel: params[:feel], success: 1)
+    else
+      userquest.update(feel: params[:feel], success: 1)
     end
     redirect_to '/makeQuest_success'
     # unless params[:quest_id].nil? #퀘스트를 성공하면 usersquest모델에 있는 유저의 퀘스트가 success : false에서 success : true로 바뀝니다.
@@ -111,13 +103,63 @@ class HomeController < ApplicationController
   end
   
   def my_page
+     @user = current_user
+     @quest_size = Quest.all.size
+     @userquest_profile_success_size = Userquest.where(user_id: @user.id, success: true).size
+     @userquest_profile_fail_size = Userquest.where(user_id: @user.id, success: false).size
+     
+     #사용자가 어떤 테마의 퀘스트를 많이 했을까요?
+     userquest_for_max = Userquest.where(user_id: @user.id)
+     
+     jung1 = 0
+      ja1 = 0
+      hack1 = 0
+      tu1 = 0
+      adv1 = 0
+     for i in 0..(userquest_for_max.size - 1)
+      
+      if userquest_for_max[i].quest.theme == "정"
+        jung1 += 1
+      elsif userquest_for_max[i].quest.theme == "자기계발"
+        ja1 += 1
+      elsif userquest_for_max[i].quest.theme == "해커톤"
+        hack1 += 1
+      elsif userquest_for_max[i].quest.theme == "튜토리얼"
+        tu1 += 1
+      else
+        adv1 += 1
+      end
+     end
+     
+      arr = [ jung1, ja1, hack1, tu1, adv1 ]
+      max = jung1
+      
+      for j in 0..4
+        for k in 0 .. 4
+          if max < arr[k]
+            max = arr[k]
+          end
+        end
+      end
+      
+      if max == jung1
+        @theme = "정"
+      elsif max == ja1
+        @theme = "자기계발"
+      elsif max == hack1
+        @theme = "해커톤"
+      elsif max == tu1
+        @theme = "튜토리얼"
+      else
+        @theme = "모험"
+      end
     
     # #필터링
-    jung = [1..8]
-    ad = [9..21]
-    ja = [22..32]
-    tu = [33..35]
-    hack = [36..40]
+    jung = [1..10]
+    ad = [11..23]
+    ja = [24..37]
+    tu = [38..39]
+    hack = [40..45]
     
     if params[:theme] == '전체'
       @userquest_select = Userquest.where(user_id: current_user.id)
@@ -129,17 +171,28 @@ class HomeController < ApplicationController
       @userquest_select = Userquest.where(user_id: current_user.id, quest_id: hack)
     elsif params[:theme] == '자기계발'
       @userquest_select = Userquest.where(user_id: current_user.id, quest_id: ja)
-    else 
-      @userquest_select = Userquest.where(user_id: current_user.id, quest_id: ad)
+    elsif params[:theme] == '튜토리얼'
+      @userquest_select = Userquest.where(user_id: current_user.id, quest_id: tu)
+    else
+      userquest = Userquest.where(user_id: current_user.id)
+      userquest_arr = userquest.map(&:quest)
+      
+      userquest_arr.each do |us|
+        us_arr = []
+        if us.content.include?(params[:text])
+          us_arr.push(us.id)
+        end
+        @userquest_select = Userquest.where(quest_id: us_arr).order(created_at: :desc)
+      end
     end
     #핕터링 끝
     
     
-    if params[:icon_prefix]
-      @userquest_all = Userquest.search(user_id, params[:icon_prefix])
-    else 
-      @userquest_all = Userquest.where(user_id: current_user.id)
-    end
+    # if params[:icon_prefix]
+    #   @userquest_all = Userquest.search(user_id, params[:icon_prefix])
+    # else 
+    #   @userquest_all = Userquest.where(user_id: current_user.id)
+    # end
   end
   
   def my_bbs
@@ -220,8 +273,28 @@ class HomeController < ApplicationController
       ####### 짜놓고 보니깐 극혐이네 되긴 돼요
   end
   
-  def admin
-    @userquest = Userquest.all.order("created_at DESC")
+  
+  
+  def create
+    @user = current_user
+    @userquest = Userquest.find_by(user_id: @user.id, success: '2')
+    
+    image = Image.new
+    
+    uploader = ImgUploader.new
+    uploader.store!(params[:img])
+    image.img_url = uploader.url
+    
+    image.save
+    
+    redirect_to "/"
+    
   end
   
+  private
+  
+  def image
+    @image = Image.all
+  end
+
 end

@@ -8,7 +8,7 @@
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="hotpink-4">
-  <div>
+  <div id="navbar">
    <nav>
     <div class="nav-wrapper "style="background-color: #fa8072">
       <a style="margin-left:50px "href="/" class="brand-logo"><img src="<%= asset_path ("DQ.logo_final.png") %>" style ="height:50px; padding-top:10px; padding-left:15px; " ></a>
@@ -17,7 +17,7 @@
         <% if @user_role.has_role? :admin %> 
           <li><a href = "/admin">ADMIN PAGE</a></li>
         <% end %>
-        <li><a href="/posts">COMMUNITY</a></li>
+        <li><a href="/posts?status=전체">COMMUNITY</a></li>
         <% if @user_role.status == true %>
           <li><a href="/makeQuest_quest">MY QUEST</a></li>
         <% else %>

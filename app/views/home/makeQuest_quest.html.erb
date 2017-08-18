@@ -1,20 +1,13 @@
 
 <!--로고-->
 <div class="container">
-  <div>
-  	<h1 class= "col s12 offset-s2">Daily Quest</h1>
-  </div>
-  
-  <div class="center">
-  	<h3>퀘스트 정보</h3>
-  </div>
+    <div class="center"><img style="margin: 4em; margin-bottom:2em;" src="<%= asset_path ("my_quest_fin.png") %>"></div>
 
   <!--타이머-->
-  <div class="center">
+  <div class="center row">
     
-    <div class="timer">
-    <h5>남은 시간</h5><br>
-    <h2><p id="demo"></p></h2>
+    <div class="timer offset-m3 col m6">
+    <div class="card grey darken-2 white-text" style="padding-top:1.5em; padding-bottom:1.5em; letter-spacing: 3px; border-radius:20px; border: solid white 2px;"><h1 id="demo"></h1></div>
     </div>
     <script>
     // Set the date we're counting down to
@@ -44,8 +37,8 @@
       var second = timeset.getSeconds();
       
       // Output the result in an element with id="demo"
-      document.getElementById("demo").innerHTML = hour + "시간 "
-      + minute + "분 " + second + "초 ";
+      document.getElementById("demo").innerHTML = hour + "h "
+      + minute + "m " + second + "s ";
       
       // If the count down is over, write some text 
       if (distance > 0) {
@@ -59,39 +52,51 @@
   
 <!--퀘스트 설명창-->
   <div class=" row">
-    <div class="card grey lighten-3 center">
-      <div class="card-content blue-grey-text text-darken-4 center">
-        <span class="card-title center grey lighten-1">퀘스트 완료하기</span>
-        <p>카데고리: <%= @userquest.quest.theme %></p>
-        <p>퀘스트 이름: <%= @userquest.quest.content %></p>
-        <p>퀘스트 설명: <%= @userquest.quest.description %></p>
+    <div class="card white offset-m1 col m10">
+      <div class="card-content blue-grey-text text-darken-4" style="padding:3em;">
+        <div class="row">
+          <div class="offset-m1 col m2 hotpink-3 center" style="border-radius:20px;padding:0.5em;"><strong ><%= @userquest.quest.theme %></strong></div>
+          <div class="offset-m1 col m7" style="border-bottom:solid #ffd3b6 2px;padding:0.5em; margin-bottom:1em;"><strong class="center"><%= @userquest.quest.content %></strong></div>
+        </div>
+        <div class="row">
+          <div class="offset-m1 col m2 center" style="padding:0.5em; border-radius:20px; border:solid #ffd3b6 2px;"><strong>퀘스트 설명</strong></div>
+          <div class="offset-m1 col m8" style="padding:0.5em; margin-bottom:1em;"><strong><%= @userquest.quest.description %></strong></div>
+          <div class="offset-m1 col m2 center" style="padding:0.5em; border-radius:20px; border:solid #ffd3b6 2px; margin-top:1em;"><strong>퀘스트 달성방법</strong></div>
+          <div class="offset-m1 col m8" style="padding:0.5em; margin-bottom:1em;"><strong><%= @userquest.quest.howTo.gsub("\n", "<br>").html_safe%></strong></div>
+        </div>
       </div>
     </div>
   </div>
 
+
+<!--s3 구현-->
+<!--<form action="/home/create" method="POST" enctype="multipart/form-data">-->
+<!--    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>-->
+<!--    <input type="hidden" name="user_id" value="<%= current_user.id %>"> <!-- 작성자가 누군지 보이지 않게 등록하기 -->
+    
+<!--    <div class="form-group">-->
+<!--      <input type="file" name="pic" accept="image/*">-->
+<!--    </div>-->
+<!--    <button type="submit" class="btn btn-default">사진 올리기</button>-->
+<!--  </form>-->
+  
+<!--  <% @image.each do |image| %>-->
+    
+<!--    <% unless image.img_url.nil? %>-->
+<!--      <img src = "<%= image.img_url %>" width="300" height="300">-->
+<!--    <% end %>-->
+    
+<!--  <% end %>-->
+  
+  
 <!--퀘스트 완료 방법을 측정합니다-->
 <!--사진으로 완료하는 퀘스트-->
 <% if @questCondition == "Photo" %>
 <!--퀘스트 파일 업로드-->
-  <form action="/home/makeQuest_quest/<%= @userquest.id %>/<%= @user.id %>" method="GET">
-    <div class="file-field input-field center">
-      <div class="btn">
-        <span>찾아보기</span>
-        <input type="file">
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text" placeholder="파일 업로드">
-      </div>
-    </div>
-    <div class="row center" id="target">
-        <a href="/home/makeQuest_quest/<%= @userquest.id %>/<%= @user.id %>" id="success"><input type="submit" class="waves-effect waves-light btn" value="제출하기"></a>
-        <a href="/home/makeQuest_quest">포기하기</a>
-    </div>
-  </form>
+<%= render 'formPhoto' %>
 <!--단어 나열로 완료하는 퀘스트-->
 <% elsif @quest.condition == "Array" %>
   <%= render 'formArray' %>
-  
 <!--글쓰기로 완료하거나, 확인할 수 없는 경우(오류)  -->
 <% else %>
   <%= render 'formWrite' %>

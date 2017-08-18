@@ -14,10 +14,16 @@ class ApplicationController < ActionController::Base
     
   end
   
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
+  
   private
   
   def user_role
-    user = User.find(27)
+    user = User.find(1)
     @user_role=current_user ? current_user : user
   end
+  
+  
 end

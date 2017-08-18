@@ -5,7 +5,7 @@
 
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <% @quest.needs.to_i.times do |list| %>
-      <input type="text" class="inputform" name="<%= index %>" placeholder = "<%= @quest.explain%>">
+      <input type="text" class="inputform" id="<%= index %>" name="array[]" placeholder = "<%= @quest.explain%>">
       <p>
       <input type="checkbox" class = "checkBox" id="chkBox<%= index %>" onclick="return false;" >
       <label for="chkBox<%= index %>"></label>
@@ -14,6 +14,10 @@
     <% end %>
     <span id="counter">###</span>
   
+    <textarea id="textarea1" class="materialize-textarea" name="feel"></textarea>
+    <label for="textarea1">무엇을 느꼈나요?</label>
+          
+          
     <button class="btn waves-effect waves-light disabled" id ="completebutton" type="submit" name="action">완료하기
       <i class="material-icons right">send</i>
     </button>
@@ -37,7 +41,7 @@ $(document).ready(function(){
 
 // input 안에 글자가 입력이 됐을 경우 체크박스를 체크하는 함수입니다.
   $('.inputform').keyup(function(){
-    arrayindex = $(this).attr('name'); //번호
+    arrayindex = $(this).attr('id'); //번호
     arrayContent = $(this).val(); //길이측정
     arrayLength = arrayContent.length;
 
@@ -63,14 +67,4 @@ $(document).ready(function(){
   })
 });
 
-
-
-//   $('form').submit(function() {
-
-//   data = $(this).serializeArray();
-//   console.log($(this).serializeArray());
-//   alert(data)
-//   return data;
-
-// });
 </script>

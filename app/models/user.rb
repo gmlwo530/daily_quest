@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :userquests, dependent: :destroy
   has_many :quests, through: :userquests
   has_many :posts, dependent: :destroy
+  has_many :images
   
   def self.find_for_oauth(auth, signed_in_resource = nil)
 

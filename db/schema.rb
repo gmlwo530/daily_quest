@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816081311) do
+ActiveRecord::Schema.define(version: 20170818084423) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20170816081311) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
+
+  create_table "images", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "img_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.integer  "quest_id"
@@ -47,6 +54,7 @@ ActiveRecord::Schema.define(version: 20170816081311) do
     t.string   "condition"
     t.string   "needs"
     t.string   "explain"
+    t.string   "stringData"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -63,11 +71,13 @@ ActiveRecord::Schema.define(version: 20170816081311) do
   create_table "userquests", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "quest_id"
-    t.string   "success"
+    t.integer  "success"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text     "feel"
     t.string   "data"
+    t.string   "stringData"
+    t.string   "photoData"
   end
 
   add_index "userquests", ["quest_id"], name: "index_userquests_on_quest_id"

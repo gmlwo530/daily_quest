@@ -1,26 +1,28 @@
-<p id="notice"><%= notice %></p>
 
-<div class="container center">
-  <p>
-    <strong>Title:</strong>
-    <%= @post.title %>
-  </p>
+<div class="hotpink-5 z-depth-3 row" style="margin:4em; margin-bottom:1em;">
   
-  <p>
+  <div class="col m2 grey lighten-2 center " style="padding:1.5em;">
+    <strong style="letter-spacing: 3px;"><%= @post.theme %></strong>
+  </div>
+  
+  <div class="col m8" style="padding:1.5em; padding-left:4em;">
+    <strong style="letter-spacing: 3px;"><%= @post.title %></strong>
+  </div>
+  
+  <div class="col m2" style="padding:1.5em; border-left: dotted #cccccc; ">
+    <strong style="letter-spacing: 3px;">작성자 : <%= @post.user.nickname %></strong>
+    <img src="<%= @post.user.profile_img %>" style="width:30px; height:30px;">
+  </div>
+  
+</div>
+
+<div class="hotpink-5 z-depth-3 row" style="margin:4em; margin-top:1em; padding:2em; height: 400px;">
+  <div class=>
     <strong>Content:</strong>
     <%= @post.content %>
-  </p>
-  
-  <p>
-    <strong>User:</strong>
-    <%= @post.user.nickname %>
-  </p>
-  
-  <p>
-    <strong>Theme:</strong>
-    <%= @post.theme %>
-  </p>
+  </div>
+</div>
   
   <%= link_to 'Edit', edit_post_path(@post) if @post.updatable_by? current_user %> |
-  <%= link_to 'Back', posts_path %>
+  <%= link_to 'Back', posts_path(status: "전체") %>
 </div>

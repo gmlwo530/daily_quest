@@ -1,37 +1,40 @@
 
-<div class="center"><img style="margin: 20px;" src="<%= asset_path ("community.png") %>"></div>
+<div class="center"><img style="margin: 3em;" src="<%= asset_path ("community.png") %>"></div>
 
 <div class="row" style="margin-top:20px; maring-bottom:20px;">
   <div class="col offset-m2 offset-l2 col m4 l4" style="margin-top:20px;">
-    <form action="/posts">
+    <form action="/posts" class="left">
+      <input type="hidden" name="status" value='전체'>
       <a href="#" class="waves-effect waves-red btn" style="background-color:#fa8072" onclick="this.parentNode.submit()">ALL</a>
     </form>
-    <form action="/posts">
+    <form action="/posts" class="left">
+      <input type="hidden" name="status" value='진행중'>
       <a href="#" class="waves-effect waves-red btn" style="background-color:#fa8072" onclick="this.parentNode.submit()">RUNNING</a>
     </form>
-    <form action="/posts">
+    <form action="/posts" class="left">
+      <input type="hidden" name="status" value='완료'>
       <a href="#" class="waves-effect waves-red btn" style="background-color:#fa8072" onclick="this.parentNode.submit()">COMPLETE</a>
     </form>  
   </div>
   
-  <div class="input-field col s6 m2 l2">
-    <form>
-      <select>
-        <option value="" disabled selected>Choose your option</option>
-        <option value="1">Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
-      </select>
-    </form>
-  </div>
   
-  <form class="col s6 m3 l3">
-      <div class="input-field suffix">
-        <input id="icon_prefix" type="text" class="validate red-text text-lighten-4">
-        <label for="icon_prefix">미션 찾기</label>
-        <a href="#"><i class="material-icons teal-text">search</i></a>
+    <form action="/posts">
+      <div class="input-field col s6 m2 l2">
+        <select name="search_option">
+          <option value="title">Choose your option</option>
+          <option value="title">Title</option>
+          <option value="user">User</option>
+        </select>
       </div>
-  </form>
+  
+      <div class="col s6 m3 l3">
+        <div class="input-field suffix ">
+          <input id="icon_prefix" type="text" name="text" class="validate">
+          <label for="icon_prefix">미션 찾기</label>
+        </div>
+      </div>
+      <a href="#" onclick="this.parentNode.submit()"><i class="material-icons teal-text">search</i></a>
+    </form>
   
 </div>
 

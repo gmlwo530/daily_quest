@@ -4,9 +4,42 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.order(created_at: :desc).page(params[:page])
     @user = current_user
     @userquest = Userquest.where(user_id: @user.id, success: [1, 2]).last
+    
+    if @userquest.nil?
+      redirect_to makeQuest_path
+    end
+    
+      ##필터링, 검색##
+      if params[:status] == '전체'
+        @posts = Post.all.order(created_at: :desc).page(params[:page])
+      elsif params[:status] == '진행중'
+        @posts = Post.where(status: "2").order(created_at: :desc).page(params[:page])
+      elsif params[:status] == '완료'
+        @posts = Post.where(status: "1").order(created_at: :desc).page(params[:page])
+      elsif params[:search_option] == 'title'
+        @posts = Post.where('title LIKE?', '%' + params[:text] + '%').all.order(created_at: :desc).page(params[:page])
+      else
+        user_nickname = Post.all.map(&:user)
+        user_nickname.each do |un|
+        un_arr = []
+        if un.nickname.include?(params[:text])
+          un_arr.push(un.id)
+        end
+        @posts = Post.where(user_id: un_arr).order(created_at: :desc).page(params[:page])
+        
+        end
+          
+      end
+    ##필터링##
+    
+    ##검색##
+    # if params[:search_option] == 'title'
+    #   @posts = Post.where('title LIKE?', '%그래%')
+    # else
+    #   @posts = Post.where('user LIKE? #{params[:text]}')
+    # end
     
   end
 
@@ -75,6 +108,7 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
