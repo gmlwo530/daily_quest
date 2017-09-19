@@ -25,7 +25,7 @@ production:
   database: db/production.sqlite3
 
 
-production:
-  <<: *default
-  adapter: postgresql
-  encoding: unicode
+# production:
+#   <<: *default
+#   adapter: postgresql
+#   encoding: unicode

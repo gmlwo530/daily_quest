@@ -18,12 +18,22 @@
 <!--  </div>-->
 <!--</form>-->
 
-
+<div class="center"style="margin: 100px;">
 <%= form_tag("/upload", method: "post", multipart: true) do %>
-  <%= file_field_tag :photoData %>
-  <%= submit_tag %>
+  <div class="row">
+               <div class="file-field input-field">
+                  <div class="btn">
+                     <span>파일찾기</span>
+                     <input type="file" name="photoData" id="photoData">
+                  </div>
+                  <div class="file-path-wrapper">
+                     <input class="file-path validate" type="text" placeholder="Upload file">
+                  </div>
+               </div>
+            </div>
+  <input class="waves-effect waves-red btn hotpink-2" type="submit" name="commit" value="제출하기">
 <% end %>
-
+</div>
 <!-- 태그 -->
 <!--<form enctype="multipart/form-data" action="/upload" accept-charset="UTF-8" method="post">-->
 <!--  <input name="utf8" type="hidden" value="✓">-->

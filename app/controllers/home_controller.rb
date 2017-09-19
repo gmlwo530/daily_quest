@@ -13,9 +13,9 @@ class HomeController < ApplicationController
     
     temp1 = (@user.id + time_day) % 10 + 1
     temp2 = temp1 % 13 + 11
-    temp3 = (temp1 + 8) % 13 + 22
-    temp4 = (temp1 + 21) % 3 + 33
-    temp5 = (temp1 + 32) % 5 + 36
+    temp3 = (temp1 + 10) % 14 + 24
+    temp4 = (temp1 + 23) % 2 + 38
+    temp5 = (temp1 + 37) % 6 + 40
     
     @quest1 = Quest.find_by(id: temp1)
     @quest2 = Quest.find_by(id: temp2)
@@ -60,7 +60,7 @@ class HomeController < ApplicationController
       if @quest.needs.nil?
       userquest.update(success: 1)
       redirect_to '/makeQuest_success' 
-      else
+      elser
       userquest.update(photoData: params[:photoData])
       redirect_to '/check'
       
